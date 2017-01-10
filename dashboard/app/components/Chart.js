@@ -8,18 +8,19 @@ var Chart = React.createClass({
   },
 
   componentDidMount: function() {
-    alert("Compenent did mount");
-
-    var el = this.getDOMNode();
+    console.log("Compenent did mount");
+    var el = this.refs.Chart01;
+    console.log(el);
     d3Chart.create(el, {
       width: '100%',
       height: '300px'
     }, this.getChartState());
-    alert("D3 chart created");
+
+    console.log("D3 chart created");
   },
 
   componentDidUpdate: function() {
-    alert("Compenent did update");
+    console.log("Compenent did update");
 
     var el = this.getDOMNode();
     d3Chart.update(el, this.getChartState());
@@ -33,16 +34,16 @@ var Chart = React.createClass({
   },
 
   componentWillUnmount: function() {
-    alert("Compenent will unmount");
+    console.log("Compenent will unmount");
     var el = this.getDOMNode();
     d3Chart.destroy(el);
   },
 
   render: function() {
-    alert("Chart rendering");
+    console.log("Chart rendering");
 
     return (
-      <div className="Chart"></div>
+      <div className="Chart" ref="Chart01"></div>
     );
   }
 });

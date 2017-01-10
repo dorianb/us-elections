@@ -1,52 +1,52 @@
 var d3 = require('d3');
 
-var d3Chart = {
-  
-  create: function(el, props, state) {
-    alert(el);
-    alert(props);
-    alert(state);
-    var svg = d3.select(el).append('svg')
-        .attr('class', 'd3')
-        .attr('width', props.width)
-        .attr('height', props.height);
+var d3Chart = {};
 
-    svg.append('g')
-        .attr('class', 'd3-points');
+d3Chart.create = function(el, props, state) {
+  console.log(el);
+  console.log(props);
+  console.log(state);
+  var svg = d3.select(el).append('svg')
+      .attr('class', 'd3')
+      .attr('width', props.width)
+      .attr('height', props.height);
 
-    this.update(el, state);
-  },
+  svg.append('g')
+      .attr('class', 'd3-points');
 
-  _drawPoints: function(el, scales, data) {
-    var g = d3.select(el).selectAll('.d3-points');
+  this.update(el, state);
+};
 
-    var point = g.selectAll('.d3-point')
-      .data(data, function(d) { return d.id; });
+d3Chart._drawPoints = function(el, scales, data) {
+  var g = d3.select(el).selectAll('.d3-points');
 
-    // ENTER
-    point.enter().append('circle')
-        .attr('class', 'd3-point');
+  var point = g.selectAll('.d3-point')
+    .data(data, function(d) { return d.id; });
 
-    // ENTER & UPDATE
-    point.attr('cx', function(d) { return scales.x(d.x); })
-        .attr('cy', function(d) { return scales.y(d.y); })
-        .attr('r', function(d) { return scales.z(d.z); });
+  // ENTER
+  point.enter().append('circle')
+      .attr('class', 'd3-point');
 
-    // EXIT
-    point.exit()
-        .remove();
-  },
+  // ENTER & UPDATE
+  point.attr('cx', function(d) { return scales.x(d.x); })
+      .attr('cy', function(d) { return scales.y(d.y); })
+      .attr('r', function(d) { return scales.z(d.z); });
 
-  update: function(el, state) {
-    // Re-compute the scales, and render the data points
-    var scales = this._scales(el, state.domain);
-    this._drawPoints(el, scales, state.data);
-  },
+  // EXIT
+  point.exit()
+      .remove();
+};
 
-  destroy: function(el) {
-    // Any clean-up would go here
-    // in this example there is nothing to do
-  }
+d3Chart.update = function(el, state) {
+  // Re-compute the scales, and render the data points
+  console.log("Update d3Chart");
+  var scales = this._scales(el, state.domain);
+  this._drawPoints(el, scales, state.data);
+};
+
+d3Chart.destroy = function(el) {
+  // Any clean-up would go here
+  // in this example there is nothing to do
 };
 
 module.exports = d3Chart;
