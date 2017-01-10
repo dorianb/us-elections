@@ -1,0 +1,999 @@
+# coding: utf-8
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import math
+from geopy.distance import vincenty
+
+
+#extract each state
+
+
+file_names=[\
+'2016-11-08-20-00_Minnesota.txt',\
+'2016-11-08-20-01_Alabama.txt',\
+'2016-11-08-20-01_Montana.txt',\
+'2016-11-08-20-01_Utah.txt',\
+'2016-11-08-20-02_Caroline_du_Sud.txt',\
+'2016-11-08-20-02_New_York.txt',\
+'2016-11-08-20-03_Nouveau_Mexique.txt',\
+'2016-11-08-20-04_Californie.txt',\
+'2016-11-08-20-04_Colorado.txt',\
+'2016-11-08-20-05_Connecticut.txt',\
+'2016-11-08-20-08_District_de_Columbia.txt',\
+'2016-11-08-20-08_Kentucky.txt',\
+'2016-11-08-20-09_Caroline_du_Nord.txt',\
+'2016-11-08-20-09_Vermont.txt',\
+'2016-11-08-20-10_Dakota_du_Sud.txt',\
+'2016-11-08-20-11_Alaska.txt',\
+'2016-11-08-20-13_Arkansas.txt',\
+'2016-11-08-20-13_Washington.txt',\
+'2016-11-08-20-15_Hawai.txt',\
+'2016-11-08-20-17_Wisconsin.txt',\
+'2016-11-08-20-19_Georgie.txt',\
+'2016-11-08-20-22_Ohio.txt',\
+'2016-11-08-20-24_Missouri.txt',\
+'2016-11-08-20-24_New_Hampshire.txt',\
+'2016-11-08-20-24_Virginie.txt',\
+'2016-11-08-20-27_Iowa.txt',\
+'2016-11-08-20-28_Delaware.txt',\
+'2016-11-08-20-29_Arizona.txt',\
+'2016-11-08-20-31_Louisiane.txt',\
+'2016-11-08-20-31_Massachusetts.txt',\
+'2016-11-08-20-31_Texas.txt',\
+'2016-11-08-20-34_Dakota_du_Nord.txt',\
+'2016-11-08-20-35_Tennessee.txt',\
+'2016-11-08-20-36_Wyoming.txt',\
+'2016-11-08-20-37_Floride.txt',\
+'2016-11-08-20-37_Illinois.txt',\
+'2016-11-08-20-40_Nevada.txt',\
+'2016-11-08-20-41_Idaho.txt',\
+'2016-11-08-20-41_Pennsylvanie.txt',\
+'2016-11-08-20-43_Virginie_Occidentale.txt',\
+'2016-11-08-20-48_Maryland.txt',\
+'2016-11-08-20-48_Mississippi.txt',\
+'2016-11-08-20-48_Rhode_Island.txt',\
+'2016-11-08-20-50_Michigan.txt',\
+'2016-11-08-20-51_Oklahoma.txt',\
+'2016-11-08-20-52_Nebraska.txt',\
+'2016-11-08-20-56_New_Jersey.txt',\
+'2016-11-08-20-57_Indiana.txt',\
+'2016-11-08-20-57_Kansas.txt',\
+'2016-11-08-20-58_Maine.txt',\
+'2016-11-08-20-59_Oregon.txt']
+
+ancient=[]
+votants=[]
+nombre_de_suffrages_exprimes=[]
+states=[]
+new_states=[]
+
+
+
+
+#"http://www2.census.gov/programs-surveys/demo/tables/voting/Alabama.xlsx"
+dict_cand_reg={}
+#for file_name in file_names:
+dict_struct_per_state={}
+for a_ind in range(len(file_names)):
+    
+    if a_ind<3000:
+
+        #    if a_ind<3:
+        file_name=file_names[a_ind]
+        # print file_name.split('_')
+        # print "file_name.split('_')"
+        # print file_name.split('_')[1].replace('.txt','')
+        state_un=file_name.split('_',1)[1].replace('.txt','')
+        # print type(state_un)
+        
+        # print "file_name.split('_')[1].replace('.txt','')"
+        # print file_name
+        # print "file_name \n"
+        #state_un
+        #with open(np_unique_state[0]+'_summarize.csv', 'rb') as f:
+        with open(state_un+'_summarize.csv', 'rb') as f:
+            #dataframe_gr_size.to_csv(f)
+            print state_un
+            print pd.read_csv(filepath_or_buffer=f)
+            print "pd.read_csv(filepath_or_buffer=f)"
+            #raw_input()
+        #dict_struct_per_state[state_un]=pd.DataFrame(pd.read_csv(filepath_or_buffer=f))
+        new_states.append(state_un)
+        
+
+
+
+        
+        #dict_struct_per_state[state_un]=1
+        # print dict_struct_per_state
+        # print "dict_struct_per_state"
+        print '******************** \n'
+        #raw_input()
+
+
+        
+dict_votant_nb_suf_states={'votants':votants,'nombre_de_suffrages_exprimes':nombre_de_suffrages_exprimes,'states':states}
+
+df_votant_nb_suf_states=pd.DataFrame.from_dict(dict_votant_nb_suf_states)
+#df_votant_nb_suf_states.to_csv('df_votant_nb_suf_states.csv')
+
+df_votant_nb_suf_states=pd.DataFrame(pd.read_csv(filepath_or_buffer='df_votant_nb_suf_states.csv'))
+
+
+
+print df_votant_nb_suf_states
+print "pd.DataFrame(pd.read_csv(filepath_or_buffer='df_votant_nb_suf_states.csv'))"
+
+print len(new_states)
+print "len(new_states)"
+
+#dict_votant_nb_suf_states[
+
+
+    
+print len(file_names)
+print "file_names"
+
+
+
+
+xlsx_file_names=[\
+'PuertoRico.xlsx',\
+'Wyoming.xlsx',\
+'Wisconsin.xlsx',\
+'WestVirginia.xlsx',\
+'Washington.xlsx',\
+'Virginia.xlsx',\
+'Vermont.xlsx',\
+'Utah.xlsx',\
+'Texas.xlsx',\
+'Tennessee.xlsx',\
+'SouthDakota.xlsx',\
+'SouthCarolina.xlsx',\
+'RhodeIsland.xlsx',\
+'Pennsylvania.xlsx',\
+'Oregon.xlsx',\
+'Oklahoma.xlsx',\
+'Ohio.xlsx',\
+'NorthDakota.xlsx',\
+'NorthCarolina.xlsx',\
+'NewYork.xlsx',\
+'NewMexico.xlsx',\
+'NewJersey.xlsx',\
+'NewHampshire.xlsx',\
+'Nevada.xlsx',\
+'Nebraska.xlsx',\
+'Montana.xlsx',\
+'Missouri.xlsx',\
+'Mississippi.xlsx',\
+'Minnesota.xlsx',\
+'Michigan.xlsx',\
+'Massachusetts.xlsx',\
+'Maryland.xlsx',\
+'Maine.xlsx',\
+'Louisiana.xlsx',\
+'Kentucky.xlsx',\
+'Kansas.xlsx',\
+'Iowa.xlsx',\
+'Indiana.xlsx',\
+'Illinois.xlsx',\
+'Idaho.xlsx',\
+'Hawaii.xlsx',\
+'Georgia.xlsx',\
+'Florida.xlsx',\
+'DistrictofColumbia.xlsx',\
+'Delaware.xlsx',\
+'Connecticut.xlsx',\
+'Colorado.xlsx',\
+'California.xlsx',\
+'Arkansas.xlsx',\
+'Arizona.xlsx',\
+'Alaska.xlsx',\
+'Alabama.xlsx']
+print '**************** \n *********************'
+import Levenshtein
+# for file_xlsx in xlsx_file_names:
+#     file_xlsx_=file_xlsx.replace('.xlsx','')
+#     # print Levenshtein.ratio('hello world', 'hello')
+#     # print Levenshtein.ratio(file_xlsx_,new_states[0])
+#     lev_rat=[Levenshtein.ratio(file_xlsx_,new_states[a]) for a in range(len(new_states))]
+#     #    print np.min([Levenshtein.ratio(file_xlsx_,new_states[a]) for a in range(len(new_states))])
+#     minmin=np.min([Levenshtein.ratio(file_xlsx_,new_states[a]) for a in range(len(new_states))])
+#     maxax=np.max([Levenshtein.ratio(file_xlsx_,new_states[a]) for a in range(len(new_states))])
+#     minmin=np.min(lev_rat)
+#     maxax=np.max(lev_rat)
+    
+    
+#     print [new_states[a] for a in range(len(lev_rat)) if lev_rat[a] ==maxax]
+#     print file_xlsx_
+#     raw_input()
+#     print "\n ----"
+########################################
+xlsx_file_names_=[el.replace('.xlsx','') for el in  xlsx_file_names]
+
+import xlrd
+extracted_total_nb_people_able_to_vote=[]
+for new_state in new_states:
+    #file_xlsx_=file_xlsx.replace('.xlsx','')
+
+    lev_rat=[Levenshtein.ratio(new_state,el) for el in xlsx_file_names_]
+    #    print np.min([Levenshtein.ratio(file_xlsx_,new_states[a]) for a in range(len(new_states))])
+    minmin=np.min(lev_rat)
+    maxax=np.max(lev_rat)
+    
+    matching_names=[xlsx_file_names_[a] for a in range(len(xlsx_file_names_)) if lev_rat[a] ==maxax]
+    # print matching_names
+    matching_name=matching_names[0]
+    
+    # print new_state
+    if new_state=='Dakota_du_Nord':
+        matching_name=matching_names[1]
+    if new_state=='Caroline_du_Nord':
+        # print '\n \n CAROLINE'
+        matching_names=[xlsx_file_names_[a] for a in range(len(xlsx_file_names_)) if lev_rat[a] >maxax-0.1]
+        # print matching_names
+        # print "matching_names"
+        
+        matching_name=matching_names[1]
+    
+        # raw_input()
+    if 0:
+        print matching_name
+        print new_state
+        print "\n ----"
+    #matching name est le xlsx correspondant à new state
+    
+    workbook = xlrd.open_workbook(matching_name+'.xlsx')
+    #print workbook
+    #print "workbook"
+    worksheet = workbook.sheet_by_index(0)
+
+    #cellule B3 ci dessous
+    #print worksheet.cell(2, 1).value
+    extracted_total_nb_people_able_to_vote.append(worksheet.cell(2, 1).value)
+    
+    #print matching_name
+    #raw_input()
+#print extracted_total_nb_people_able_to_vote
+#print "extracted_total_nb_people_able_to_vote"
+
+# df_votant_nb_suf_states=pd.DataFrame(pd.read_csv(filepath_or_buffer='df_votant_nb_suf_states.csv'))
+
+df_votant_nb_suf_states['extracted_total_nb_people_able_to_vote'] = pd.Series(extracted_total_nb_people_able_to_vote) #np.random.randn(sLength), index=df1.index)
+
+
+
+df_votant_nb_suf_states['abstention_ratio'] = df_votant_nb_suf_states.apply(lambda row: 1-row['votants']/row['extracted_total_nb_people_able_to_vote'],axis=1)
+df_votant_nb_suf_states['abstention_ratio_no_blanc'] = df_votant_nb_suf_states.apply(lambda row: 1-row['nombre_de_suffrages_exprimes']/row['extracted_total_nb_people_able_to_vote'],axis=1)
+
+print df_votant_nb_suf_states[['abstention_ratio','states']]
+print df_votant_nb_suf_states[['abstention_ratio_no_blanc','states']]
+
+#print df_votant_nb_suf_states
+print "df_votant_nb_suf_states"
+
+
+raw_input()
+min_df=pd.read_table('2016-11-08-20-00_Minnesota.txt', sep=';')
+
+print min_df
+print "min_df"
+raw_input()
+
+
+# load train and test data
+df_mess_train = pd.read_csv('mess_train_list.csv')
+df_mess_test = pd.read_csv('mess_test_list.csv')
+pos_train = pd.read_csv('pos_train_list.csv') # real answers
+
+listOfBs = np.union1d(np.unique(df_mess_train['bsid']), np.unique(df_mess_test['bsid'])) # determine all Base stations that received at least 1 message
+
+#print 'cest nul'
+print 'objectif pour chaque message trouver les trois derniers'
+print 'autre possibilité grâce à chaque base, quelquun est capable (un expert) de trouver à partir des coord exactes dapprendre a reconnaitre des signaux specifiques'
+print 'en fait il faut pour chaque '
+
+print 'la premiere idee est de faire de la triangulation simple cest a dire pour chaque objet dont on veut connaitre la position'
+print ' on cherche les trois dernières positions'
+print 'problème on a pas les positions des balises de base'
+
+print 'pour chaque objet retrouver les dernieres occurence de cet objet'
+
+print df_mess_train
+print "df_mess_train"
+print df_mess_train.shape[0]
+for a in range(df_mess_train.shape[0]):
+    if a>1 and a==131:
+        
+        df_mess_train.iloc[a]
+        print 'df_mess_train.iloc[a]'
+        print df_mess_train.iloc[a]
+        print df_mess_train.iloc[a]['did']
+        this_did=df_mess_train.iloc[a]['did']
+        this_time=df_mess_train.iloc[a]['time_ux']
+        #print df_mess_train[df_mess_train[['did']]==this_did] # nextrait que les did ... il faut extraire les lignes correctes!!!
+        #print df_mess_train[df_mess_train['did']==this_did] # nextrait que les did ... il faut extraire les lignes correctes!!!
+        print '\n des noirs donc des blancs \n'
+        #raw_input()
+        #print df_mess_train[(df_mess_train['time_ux']<=this_time)&(df_mess_train['did']==this_did)] # nextrait que les did ... il faut extraire les lignes correctes!!!
+        print df_mess_train[(df_mess_train['time_ux']<this_time)&(df_mess_train['did']==this_did)] # nextrait que les did ... il faut extraire les lignes correctes!!!
+        print "df_mess_train[df_mess_train[['did']]==this_did]"
+        raw_input()
+        print 'a'
+        print a
+        raw_input()
+raw_input()
+
+table=df_mess_train
+lign=df_mess_train.iloc[1]
+
+def triang(table,lign):
+    #print lign['bsid']
+    print lign['did']
+    bsid_lign=lign['bsid']
+    did_lign=lign['did']
+    time_ux_lign=lign['time_ux']
+    print "lign['bsid']"
+    #table[(table.bsid == bsid_lign) & (df.D == 6)]
+    #print table[(table.bsid == bsid_lign)].shape   
+    #print "table[(table.bsid == bsid_lign)].shape" 
+    #print table[(table.bsid == bsid_lign)]
+    #print table[(table.bsid == bsid_lign) & (table.time_ux < time_ux_lign)].shape
+    #print "table[(table.bsid == bsid_lign) & (table.time_ux < time_ux_lign)].shape"
+    raw_input()
+    
+
+    shape_extracted=table[(table.bsid == bsid_lign) & (table.time_ux < time_ux_lign)].shape
+    if shape_extracted[0]==0:
+        return lign[['bs_lat','bs_lng']],0
+    if shape_extracted[0]==1:
+        return lign[['bs_lat','bs_lng']],1
+    
+    #df.filter(like=bsid, axis=0)
+    #df.filter(like=bsid, axis=0)
+
+    return
+print triang(table,lign)
+
+
+def feat_mat_const(df_mess_train, listOfBs):
+
+    df_mess_bs_group = df_mess_train.groupby(['objid'], as_index=False) # group data by message (objid)
+    nb_mess = len(np.unique(df_mess_train['objid']))
+    print nb_mess
+    print " nb_mess"
+    #raw_input()
+    df_feat = pd.DataFrame(np.zeros((nb_mess,len(listOfBs))), columns = listOfBs) # feature matrix
+    print df_feat.shape
+    print "df_feat.shape" #shape= ( nombre de message) x (NB de bases)
+    print len(df_mess_bs_group)
+    #    print df_mess_bs_group.iloc[0]
+    print "\n ****************** \n "
+    print "len(df_mess_bs_group)"
+    #    raw_input()
+    idx = 0
+
+    for key, elmt in df_mess_bs_group:
+        print key, elmt
+        print "key, elmt \n   ************** \n"
+        raw_input()
+        df_mess_bs_group.get_group(key)
+        df_feat.loc[idx,df_mess_bs_group.get_group(key)['bsid']] = 1
+        idx = idx + 1
+    
+    return df_feat
+
+
+def ground_truth_const(df_mess_train, pos_train):
+
+    df_mess_pos = df_mess_train.copy()
+    df_mess_pos[['lat', 'lng']] = pos_train
+
+    ground_truth_lat = np.array(df_mess_pos.groupby(['objid']).mean()['lat'])
+    ground_truth_lng = np.array(df_mess_pos.groupby(['objid']).mean()['lng'])
+    
+    return ground_truth_lat, ground_truth_lng
+
+df_feat = feat_mat_const(df_mess_train, listOfBs)
+print df_feat.head()
+print "df_feat.head()"
+raw_input()
+    
+    
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import math
+from geopy.distance import vincenty
+
+
+
+# load train and test data
+df_mess_train = pd.read_csv('mess_train_list.csv') # train set
+df_mess_test = pd.read_csv('mess_test_list.csv') # test set
+pos_train = pd.read_csv('pos_train_list.csv') # position associated to train set
+listOfBs = np.union1d(np.unique(df_mess_train['bsid']), np.unique(df_mess_test['bsid'])) # determine all Base stations that received at least 1 message
+print "lala"
+print listOfBs
+print "listOfBs"
+
+
+def create_sparse(table,listOfBs):
+    
+    print table.iloc[0]
+    lign =table.iloc[0]
+    print "table.iloc[0]"
+    print lign['bsid']
+    print [int(lign['bsid']==listOfBs[a]) for a in range(len(listOfBs))]
+    #table.iloc[b]
+    print table.shape[0]
+    print [[int(table.iloc[b]['bsid']==listOfBs[a]) for a in range(len(listOfBs))] for b in range(table.shape[0])]
+    raw_input()
+    return
+#raw_input()
+
+
+#create_sparse(df_mess_train,listOfBs)
+table=df_mess_train
+print pd.get_dummies(list(table[['bsid']]),columns=listOfBs)
+print "pandas.get_dummies(table[['bsid']])"
+raw_input()
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn import datasets
+from sklearn import svm
+
+import matplotlib.pyplot as plt
+from sklearn.neural_network import MLPClassifier
+from sklearn.preprocessing import MinMaxScaler
+
+"""
+params = [{'solver': 'sgd', 'learning_rate': 'constant', 'momentum': 0,
+           'learning_rate_init': 0.2},
+          {'solver': 'sgd', 'learning_rate': 'constant', 'momentum': .9,
+           'nesterovs_momentum': False, 'learning_rate_init': 0.2},
+          {'solver': 'sgd', 'learning_rate': 'constant', 'momentum': .9,
+           'nesterovs_momentum': True, 'learning_rate_init': 0.2},
+          {'solver': 'sgd', 'learning_rate': 'invscaling', 'momentum': 0,
+           'learning_rate_init': 0.2},
+          {'solver': 'sgd', 'learning_rate': 'invscaling', 'momentum': .9,
+           'nesterovs_momentum': True, 'learning_rate_init': 0.2},
+          {'solver': 'sgd', 'learning_rate': 'invscaling', 'momentum': .9,
+           'nesterovs_momentum': False, 'learning_rate_init': 0.2},
+          {'solver': 'adam', 'learning_rate_init': 0.01}]
+
+labels = ["constant learning-rate", "constant with momentum",
+          "constant with Nesterov's momentum",
+          "inv-scaling learning-rate", "inv-scaling with momentum",
+          "inv-scaling with Nesterov's momentum", "adam"]
+
+plot_args = [{'c': 'red', 'linestyle': '-'},
+             {'c': 'green', 'linestyle': '-'},
+             {'c': 'blue', 'linestyle': '-'},
+             {'c': 'red', 'linestyle': '--'},
+             {'c': 'green', 'linestyle': '--'},
+             {'c': 'blue', 'linestyle': '--'},
+             {'c': 'black', 'linestyle': '-'}]
+
+
+"constant with momentum",
+"constant with Nesterov's momentum",
+ "adam"
+
+mlp = MLPClassifier(verbose=0, random_state=0,
+                            max_iter=max_iter, **param)
+"""
+
+
+
+
+
+
+###########################################################################################
+# d'abord on cherche a exprimer un certain nombre de modeles: on utilise les reseaux de neurones pour le moment
+
+
+# def my_kernel(X, Y):
+#     """
+#     We create a custom kernel:
+
+#                  (2  0)
+#     k(X, Y) = X  (    ) Y.T
+#                  (0  1)
+#     """
+#     M = np.array([[2, 0], [0, 1.0]])
+#     return np.dot(np.dot(X, M), Y.T)
+# def my_kernel2(X, Y):
+#     """
+#     We create a custom kernel:
+
+#                  (2  0)
+#     k(X, Y) = np.sum(X  (    ) Y.T
+#                  (0  1)
+#     """
+#     M = np.array([[2, 0], [0, 1.0]])
+#     return np.dot(np.dot(X, M), Y.T)
+
+def fast_hik(x, y):
+    return np.minimum(x, y).sum()
+
+
+
+params_with_layers_randomstate=[]
+
+
+#random_states_plur=[2,11,32,31,42,47,48,73,74,127,3,4,5,6,7,8,9,10,12,113,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+random_states_plur=range(50)
+random_states_plur=random_states_plur[1:]
+print random_states_plur
+print "random_states_plur"
+#raw_input()
+kernels=['linear','rbf']
+degrees=[2,3,4]
+class_weights=['balanced', None]
+for kernel in kernels:
+    for degree in degrees:
+        for ind_rand_states_single in range(len(random_states_plur)):
+            for class_weight in class_weights:
+                #'class_weight':['balanced', None]
+                #'class_weight':[class_weight]
+
+                rand_state=random_states_plur[ind_rand_states_single]
+                random_states=[rand_state]
+                #random_states=[2,11,31,42,47,73,127]
+                #random_states=[2,11,31] #test
+                import copy
+                #name_file='cv_svmc_g_kernel_'+kernel+'_deg_'+degree.__str__()+'__indrand_'+ ind_rand_states_single.__str__() +'.csv'
+                name_file='cv_svmc_g_kernel_classweight_'+class_weight.__str__()+'_'+kernel+'_deg_'+degree.__str__()+'__indrand_'+ ind_rand_states_single.__str__() +'.csv'
+                print name_file
+                # name_file='cv_svmc_g_kernel_classweight_'+None.__str__()+'_'+kernel+'_deg_'+degree.__str__()+'__indrand_'+ ind_rand_states_single.__str__() +'.csv'
+                # print name_file
+
+                print "name_file"
+                # raw_input()
+
+                # Critere de performance
+                def compute_pred_score(y_true, y_pred):
+                    y_comp = y_true * y_pred
+                    score = float(10*np.sum(y_comp == -1) + np.sum(y_comp == 0))
+                    score /= y_comp.shape[0]
+                    return score
+
+                X_train_fname = 'training_templates.csv'
+                y_train_fname = 'training_labels.txt'
+                X_test_fname  = 'testing_templates.csv'
+                X_train = pd.read_csv(X_train_fname, sep=',', header=None).values
+                X_test  = pd.read_csv(X_test_fname,  sep=',', header=None).values
+                y_train = np.loadtxt(y_train_fname, dtype=np.int)
+
+
+                ################################################################################"
+                #below grid search for mlp classif
+
+                from sklearn import svm, datasets
+                from sklearn.model_selection import GridSearchCV
+
+                #iris = datasets.load_iris()
+                ######parameters = {'hidden_layers_sizes':hidden_layers_sizes , 'kernel':('linear', 'rbf'), 'C':[1, 10]}
+
+                #test below!!!
+                # parameters = {'C':[1.0], 'kernel':['rbf','fast_hik'], 'degree':[3], 'gamma':['2'], 'coef0':[0.0], 'shrinking':[True], 'probability':[False], 'tol':[0.001], 'cache_size':[200],
+                #               'class_weight':[None], 'verbose':[False],\
+                #               'max_iter':[-1], 'decision_function_shape':[None], 'random_state':random_states}
+                #does not work above
+
+
+
+                # parameters = {'C':[1.0], 'kernel':['rbf'], 'degree':[3], 'gamma':[2], 'coef0':[0.0], 'shrinking':[True], 'probability':[False], 'tol':[0.001], 'cache_size':[200],
+                #               'class_weight':[None], 'verbose':[False],\
+                #               'max_iter':[-1], 'decision_function_shape':[None], 'random_state':random_states}
+
+
+                # parameters = {'C':[1.0,0.025], 'kernel':['rbf','linear','fast_hik'], 'degree':[3], 'gamma':['auto','2'], 'coef0':[0.0], 'shrinking':[True], 'probability':[False],\
+                #    'tol':[0.001], 'cache_size':[200],\
+                #               'class_weight':[None], 'verbose':[False],\
+                #               'max_iter':[-1], 'decision_function_shape':[None], 'random_state':random_states}
+
+                # parameters = {'C':np.logspace(-10, 3, 14),\
+                #               'kernel':['rbf','linear'], 'degree':[3], 'gamma':[2], 'coef0':[0.0], 'shrinking':[True], 'probability':[False], 'tol':[0.001], 'cache_size':[200],\
+                #               'class_weight':[None], 'verbose':[False],\
+                #               'max_iter':[-1], 'decision_function_shape':[None], 'random_state':random_states}
+
+                # parameters = {'C':np.logspace(-2, 6, 9),\
+                #               'kernel':['rbf','linear'], 'degree':[3], 'gamma':[2], 'coef0':[0.0], 'shrinking':[True], 'probability':[False], 'tol':[0.001], 'cache_size':[200],\
+                #               'class_weight':[None], 'verbose':[False],\
+                #               'max_iter':[-1], 'decision_function_shape':[None], 'random_state':random_states}
+                #parameters = {'C':np.logspace(-2, 5, 7),\
+                #parameters = {'C':[1000.0],\
+                #parameters = {'C':np.logspace(-2, 8, 11),\
+                #parameters = {'C':[1000.0],\
+                C_s=np.logspace(0, 5, 6)
+
+                #avant je faisais     C_s=np.logspace(-2, 5, 8)
+                #mais C=0.01 vraiment trop pourri de meme pour c=1 et C=0.1 quand gamma change
+
+                # print C_s
+                # print "C_s"
+                C_s=np.append(C_s,0.5)
+                C_s=np.append(C_s,5.0)
+                #C_s.append(5)
+                # print C_s
+                # print "C_s"
+
+                # raw_input()
+
+                #avant je faisais
+                #      'kernel':['rbf'], 'degree':[3], 'gamma':[1000,100,10,1,0.1,0.01], 'coef0':[0.0], 'shrinking':[True], 'probability':[False], 'tol':[0.001], 'cache_size':[200],\
+                # mais gamma=0.01 est vraiment pourri de même pour gamma=1000
+
+
+
+
+
+                #            if np.mod(random_states[0],2)==0:
+                parameters = {'C':C_s,\
+                              'kernel':[kernel], 'degree':[degree], 'gamma':[100,10,5,1,0.5,0.1], 'coef0':[0.0], 'shrinking':[True], 'probability':[False], 'tol':[0.001], 'cache_size':[200],\
+                              'class_weight':[class_weight], 'verbose':[False],\
+                              'max_iter':[-1], 'decision_function_shape':[None], 'random_state':random_states}
+                #gamma utilisé quand kernel rbf
+                # else:
+                #     parameters = {'C':C_s,\
+                #                   'kernel':[kernel], 'degree':[degree], 'gamma':[100,10,5,1,0.5,0.1], 'coef0':[0.0], 'shrinking':[True], 'probability':[False], 'tol':[0.001], 'cache_size':[200],\
+                #                   'class_weight':['balanced', None], 'verbose':[False],\
+                #                   'max_iter':[-1], 'decision_function_shape':[None], 'random_state':random_states}
+                #     #gamma pas utilisé quand kernel linear
+
+                #8h8-->tous ls gammas et C=1000, 2 class weight
+                #0h18--->?5 unités*2 --> 0h19:33
+
+                # # print np.logspace(-2, 6, 9)
+                # print "np.logspace(-10, 3, 13)"
+                # # # print np.logspace(-10, 3, 14)
+                # # # print "np.logspace(-10, 3, 13)"
+                # print np.logspace(-2, 8, 11)
+
+                # raw_input()
+
+
+
+
+                #http://scikit-learn.org/stable/auto_examples/exercises/plot_cv_digits.html#sphx-glr-auto-examples-exercises-plot-cv-digits-py
+                #http://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html#sphx-glr-auto-examples-classification-plot-classifier-comparison-py
+                #SVC(kernel="linear", C=0.025),
+                #    SVC(gamma=2, C=1),
+
+                svmc=svm.SVC(verbose=0)
+
+                #########################################################################################################
+                from sklearn.model_selection import KFold
+                from sklearn.model_selection import cross_val_score
+                from sklearn.model_selection import train_test_split
+                n_splits=5
+
+
+                #shuffle=True, random_state
+                kf = KFold(n_splits=n_splits,shuffle=True, random_state=rand_state)
+
+                              ############################################################################################
+
+
+
+                #print mlp.get_params().keys()
+                #print "mlp.get_params().keys()"
+                #raw_input()
+                #vr = svm.SVC()
+                clf = GridSearchCV(svmc, parameters,n_jobs=-1,error_score=0,cv=kf) # ajouter le truc pour rendre la recherche robuste!
+
+
+                X_train_smaller, X_test_notuseful, y_train_smaller, y_test_notuseful = train_test_split(X_train, y_train, test_size=0.94, random_state=rand_state)
+                print X_train_smaller.shape
+                print "X_train_smaller.shape"
+                #raw_input()
+
+                clf.fit(X_train_smaller, y_train_smaller)
+
+                cvres_df=pd.DataFrame(clf.cv_results_)
+                cvres_df.to_csv(path_or_buf=name_file) #'cv_svmc_g_kernel_'+kernel+'_deg_'+degree.__str__()+'__indrand_'+ ind_rand_states_single.__str__() +'.csv')
+                #            for kernel in kernels:
+                #    for degree in degrees:
+
+                print cvres_df
+print "cvres_df"
+raw_input()
+#              clf.fit(X_train, y_train)
+    
+# Prediction
+y_pred_train =  clf.predict(X_train)
+
+# Compute the score
+score = compute_pred_score(y_train, y_pred_train)
+print('Score sur le train : %s' % score)
+
+y_pred = clf.predict(X_test)
+
+np.savetxt('y_pred.txt', y_pred, fmt='%d')
+
+
+              
+#op#############################################################################"
+
+
+
+#X_train.shape, X_test.shape, y_train.shape
+
+print('n_samples : %d, n_features : %d' % X_train.shape)
+print("'n_samples : %d, n_features : %d' % X_train.shape")
+raw_input()
+
+#np.mean(y_train), np.unique(y_train)
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import roc_auc_score
+if 0:
+    clf = LogisticRegression()
+    clf.fit(X_train, y_train)
+    
+    # Prediction
+    y_pred_train =  clf.predict(X_train)
+
+    # Compute the score
+    score = compute_pred_score(y_train, y_pred_train)
+    print('Score sur le train : %s' % score)
+
+    y_pred = clf.predict(X_test)
+
+    np.savetxt('y_pred.txt', y_pred, fmt='%d')
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+from sklearn.linear_model import BayesianRidge, LinearRegression
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error
+from sklearn.datasets import make_friedman1
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.neural_network import MLPRegressor
+
+
+
+
+def print_score_and_produce_y_pred_test(method,X_train,y_train,X_test,text_method):
+    # Prediction
+    y_pred_train =  method.predict(X_train)
+
+    # Compute the score
+    score = compute_pred_score(y_train, y_pred_train)
+    print('Score sur le train : %s' % score)
+    y_pred = method.predict(X_test)
+
+    np.savetxt('y_pred_'+text_method+'.txt', y_pred, fmt='%d')
+    return
+
+def return_pred_test_and_print_score(method,X_train,y_train,X_test,text_method):
+    # Prediction
+    y_pred_train =  method.predict(X_train)
+
+    # Compute the score
+    score = compute_pred_score(y_train, y_pred_train)
+    print('Score sur le train : %s' % score)
+    y_pred = method.predict(X_test)
+
+    #    np.savetxt('y_pred_'+text_method+'.txt', y_pred, fmt='%d')
+    return y_pred
+
+#text_method='rfr'
+
+if 0:
+    from sklearn import svm
+    clf_svm_svc_nat = svm.LinearSVC()
+    clf_svm_svc_nat.fit(X_train, y_train)  
+
+    method=clf_svm_svc_nat
+    text_method='clf_svm_linearsvc_nat'
+    print_score_and_produce_y_pred_test(method,X_train,y_train,X_test,text_method)
+    #methode ci dessus: pourrie!
+
+    
+if 0:
+    from sklearn.ensemble import RandomForestClassifier
+    
+    clf_rfc = RandomForestClassifier()
+    clf_rfc.fit(X_train, y_train)
+    text_method='clf_rfc'
+    method=clf_rfc
+    
+    print_score_and_produce_y_pred_test(method,X_train,y_train,X_test,text_method)
+##############################################
+from sklearn.neural_network import MLPClassifier
+#    mlp = MLPClassifier(verbose=0, **param)
+              
+if 0:
+    #clf = MLPClassifier(solver='lbfgs', alpha=1e-5,
+    #...                     hidden_layer_sizes=(5, 2), random_state=1)
+    clf = MLPClassifier( random_state=42)
+    clf.fit(X_train, y_train)
+
+
+    text_method='clf_mlpc_new'
+    method=clf
+
+
+
+    y_pred_no_threshold=return_pred_test_and_print_score(method,X_train,y_train,X_test,text_method)
+
+
+
+    #print_score_and_produce_y_pred_test(method,X_train,y_train,X_test,text_method)
+    #print clf.predict_proba(X_test)
+    probabilities=clf.predict_proba(X_test)
+
+######################################################################
+#Kfold cross validaton below!
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import train_test_split
+n_splits=5
+
+
+#shuffle=True, random_state
+nested_scores=[]
+print len(params_with_layers_randomstate)
+print "len(params_with_layers_randomstate)"
+raw_input()
+print "grosse boucle for"
+raw_input()
+#for param in params_with_layers_randomstate:
+for i in range(len(params_with_layers_randomstate)):
+    if i<0:
+        param=params_with_layers_randomstate[i]
+        
+        kf = KFold(n_splits=n_splits,shuffle=True, random_state=param['random_state'])
+        ##### below a inclure dans un multiprocessing
+        mlp = MLPClassifier(verbose=0, **param)
+        print "    mlp = MLPClassifier(verbose=0, **param)"
+
+
+
+        X_train_smaller, X_test_notuseful, y_train_smaller, y_test_notuseful = train_test_split(X_train, y_train, test_size=0.96, random_state=param['random_state'])
+        #print X_train_smaller.shape
+        #print "X_train_smaller.shape"
+        #raw_input()
+
+        
+        # Nested CV with parameter optimization
+        nested_score = cross_val_score(mlp, X=X_train, y=y_train, cv=kf ) #cv=outer_cv)
+        nested_scores.append(nested_score.mean())
+print nested_scores
+raw_input()
+#####################################################################
+#multiprocessing below
+
+import multiprocessing
+
+n_cores=multiprocessing.cpu_count()
+
+
+
+
+def funSquare(num):
+    return num ** 2
+
+
+pool = multiprocessing.Pool(processes=n_cores)
+results = pool.map(funSquare, range(10))
+print(results)
+
+print("results")
+raw_input()
+#######################################################################
+# ccross val multiprocess
+
+def produce_scores(param):
+    #param=params_with_layers_randomstate[i]
+    print '************'
+    print param
+    print '************'
+    kf = KFold(n_splits=n_splits,shuffle=True, random_state=param['random_state'])
+    ##### below a inclure dans un multiprocessing
+    mlp = MLPClassifier(verbose=0, **param)
+    print "    mlp = MLPClassifier(verbose=0, **param)"
+
+
+
+    X_train_smaller, X_test_notuseful, y_train_smaller, y_test_notuseful = train_test_split(X_train, y_train, test_size=0.96, random_state=param['random_state'])
+    #print X_train_smaller.shape
+    #print "X_train_smaller.shape"
+    #raw_input()
+
+        
+    # Nested CV with parameter optimization
+    nested_score = cross_val_score(mlp, X=X_train_smaller, y=y_train_smaller, cv=kf ) #cv=outer_cv)
+    #nested_scores.append(nested_score.mean())
+
+
+    
+    return nested_score.mean()
+########################################
+### below à virer!
+params_with_layers_randomstate=[params_with_layers_randomstate[i] for i in range(3)] #this is a test
+########################################
+
+pool = multiprocessing.Pool(processes=n_cores)
+results = pool.map(produce_scores, params_with_layers_randomstate)
+print(results)
+
+print("results better!! ")
+raw_input()
+
+
+# pool = Pool(processes=4)              # start 4 worker processes
+# inputs = range(10)
+# result = pool.map(f, inputs)
+
+    
+
+
+#######################################################################
+
+    
+import pickle
+PIK1 = "y_pred_no_threshold.dat"
+PIK2 = "probabilities.dat"
+
+#data = ["A", "b", "C", "d"]
+if 0:
+    with open(PIK1, "wb") as f:
+        pickle.dump(y_pred_no_threshold, f)
+    with open(PIK2, "wb") as f:
+        pickle.dump(probabilities, f)
+
+
+    
+with open(PIK1, "rb") as f:
+    y_pred_no_threshold=pickle.load(f)
+    
+with open(PIK2, "rb") as f:
+    probabilities=pickle.load(f)
+
+# ce seuil doit etre entre 0 et 0.5 max
+#seuil=0.1  #0.315913370998
+#seuil=0.01  #0.330508474576
+#seuil=0.15  #0.330508474576
+#seuil=0.20  #0.298728813559
+#seuil=0.25  #0.282015065913#
+#seuil=0.375  #0.249764595104
+#seuil=0.4375  #0.249764595104
+#seuil=0.46875  #0.206685499058
+#seuil=0.484375  #0.189971751412
+seuil=0.4921884375  #0.187382297552
+
+
+
+#
+#
+
+
+def thresholding_proba(y_pred_no_threshold,probabilities,seuil):
+    print type(y_pred_no_threshold)
+    print "type(y_pred_no_threshold)"
+    raw_input()
+    predicted=[y_pred_no_threshold[i] if np.abs(probabilities[i][0]-.5)>seuil else 0 for i in range(len(y_pred_no_threshold))  ]
+    print np.array(predicted)
+    print type(predicted)
+    print type(np.array(predicted))
+    print type(y_pred_no_threshold)
+    print y_pred_no_threshold
+    print "y_pred_no_threshold"
+    raw_input()
+    
+    return np.array(predicted)
+
+predicted_with_threshold=thresholding_proba(y_pred_no_threshold,probabilities,seuil)
+text_method='nn_thres'
+np.savetxt('y_pred_'+text_method+'.txt', predicted_with_threshold, fmt='%d')
