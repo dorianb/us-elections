@@ -54,8 +54,6 @@ d3BasicChart._drawPoints = function(el, scales, data) {
 
 d3BasicChart.update = function(el, state) {
   // Re-compute the scales, and render the data points
-  console.log("Update d3Chart");
-
   var scales = this._scales(el, state.domain);
   this._drawPoints(el, scales, state.data);
 };

@@ -12,7 +12,8 @@ var BasicChart = React.createClass({
   getInitialState: function() {
     return {
       data: sampleData,
-      domain: {x: [0, 30], y: [0, 100]}
+      domain: {x: [0, 30], y: [0, 100]},
+      reference: "BasicChart"
     };
   },
   render: function () {
@@ -25,7 +26,8 @@ var BasicChart = React.createClass({
           { /*<img data-src="holder.js/100%x240/white" />*/ }
           <Chart
             data={this.state.data}
-            domain={this.state.domain} />
+            domain={this.state.domain}
+            reference={this.state.reference} />
         </div>
         <div className="chart-notes">
           Notes about this chart
