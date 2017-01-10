@@ -1,7 +1,7 @@
 var React = require('react');
-var d3Chart = require('./d3Chart');
+var d3BasicChart = require('./d3BasicChart');
 
-var Chart = React.createClass({
+var BasicChart = React.createClass({
   propTypes: {
     data: React.PropTypes.array,
     domain: React.PropTypes.object
@@ -10,10 +10,10 @@ var Chart = React.createClass({
   componentDidMount: function() {
     console.log("Compenent did mount");
     var el = this.refs.Chart01;
-    console.log(el);
-    d3Chart.create(el, {
+
+    d3BasicChart.create(el, {
       width: '100%',
-      height: '300px'
+      height: '100%'
     }, this.getChartState());
 
     console.log("D3 chart created");
@@ -22,8 +22,8 @@ var Chart = React.createClass({
   componentDidUpdate: function() {
     console.log("Compenent did update");
 
-    var el = this.getDOMNode();
-    d3Chart.update(el, this.getChartState());
+    var el = this.refs.Chart01;
+    d3BasicChart.update(el, this.getChartState());
   },
 
   getChartState: function() {
@@ -35,8 +35,9 @@ var Chart = React.createClass({
 
   componentWillUnmount: function() {
     console.log("Compenent will unmount");
-    var el = this.getDOMNode();
-    d3Chart.destroy(el);
+
+    var el = this.refs.Chart01;
+    d3BasicChart.destroy(el);
   },
 
   render: function() {
@@ -48,4 +49,4 @@ var Chart = React.createClass({
   }
 });
 
-module.exports = Chart;
+module.exports = BasicChart;
