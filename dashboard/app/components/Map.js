@@ -1,6 +1,5 @@
 var React = require('react');
-var D3Map = require('../D3Components/Map');
-
+var MapView = require('../D3Components/MapView');
 
 var Map = React.createClass({
   getInitialState: function() {
@@ -16,7 +15,7 @@ var Map = React.createClass({
         </div>
         <div className="chart-stage">
           { /*<img data-src="holder.js/100%x240/white" />*/ }
-          <D3Map reference={this.state.reference} />
+          <MapView reference={this.state.reference} />
         </div>
         <div className="chart-notes">
           Notes about this chart
