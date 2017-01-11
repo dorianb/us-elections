@@ -8,6 +8,11 @@ var Home = React.createClass({
       <div className="container-fluid">
 
         <div className="row">
+          <div className="col-sm-12">
+            <Map />
+          </div>
+        </div>
+        <div className="row">
           <div className="col-sm-3">
             <div className="chart-wrapper">
               <div className="chart-title">
@@ -24,7 +29,6 @@ var Home = React.createClass({
           <div className="col-sm-9">
             <div className="row">
               <div className="col-sm-12">
-                <Map />
               </div>
             </div>
             <div className="row">
