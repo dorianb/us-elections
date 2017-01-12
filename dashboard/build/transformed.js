@@ -21483,8 +21483,9 @@
 
 	var React = __webpack_require__(1);
 	var Chart = __webpack_require__(179);
+	var NavBar = __webpack_require__(182);
 
-	var sampleData = [{ id: '5fbmzmtc', x: 7, y: 41, z: 6 }, { id: 's4f8phwm', x: 11, y: 45, z: 9 }];
+	var sampleData = [{ id: '5fbmzmtc', x: 7, y: 41, z: 6 }, { id: 's4f8phwm', x: 11, y: 45, z: 9 }, { id: 'ddgsgsdez', x: 15, y: 50, z: 15 }];
 
 	var App = React.createClass({
 	  displayName: 'App',
@@ -21500,62 +21501,7 @@
 	    return React.createElement(
 	      'div',
 	      { className: 'application' },
-	      React.createElement(
-	        'div',
-	        { className: 'navbar navbar-inverse', role: 'navigation' },
-	        React.createElement(
-	          'div',
-	          { className: 'container-fluid' },
-	          React.createElement(
-	            'div',
-	            { className: 'navbar-header' },
-	            React.createElement(
-	              'button',
-	              { type: 'button', className: 'navbar-toggle', 'data-toggle': 'collapse', 'data-target': '.navbar-collapse' },
-	              React.createElement(
-	                'span',
-	                { className: 'sr-only' },
-	                'Toggle navigation'
-	              ),
-	              React.createElement('span', { className: 'icon-bar' }),
-	              React.createElement('span', { className: 'icon-bar' }),
-	              React.createElement('span', { className: 'icon-bar' })
-	            ),
-	            React.createElement(
-	              'a',
-	              { className: 'navbar-brand', href: '/' },
-	              React.createElement('span', { className: 'glyphicon glyphicon-chevron-left' }),
-	              'Dashboard'
-	            )
-	          ),
-	          React.createElement(
-	            'div',
-	            { className: 'navbar-collapse collapse' },
-	            React.createElement(
-	              'ul',
-	              { className: 'nav navbar-nav navbar-left' },
-	              React.createElement(
-	                'li',
-	                null,
-	                React.createElement(
-	                  'a',
-	                  { href: 's/home' },
-	                  'Home'
-	                )
-	              ),
-	              React.createElement(
-	                'li',
-	                null,
-	                React.createElement(
-	                  'a',
-	                  { href: '/team' },
-	                  'Team'
-	                )
-	              )
-	            )
-	          )
-	        )
-	      ),
+	      React.createElement(NavBar, null),
 	      React.createElement(
 	        'div',
 	        { className: 'container-fluid' },
@@ -21576,9 +21522,7 @@
 	              React.createElement(
 	                'div',
 	                { className: 'chart-stage' },
-	                React.createElement(Chart, {
-	                  data: this.state.data,
-	                  domain: this.state.domain })
+	                React.createElement('img', { 'data-src': 'holder.js/100%x650/white' })
 	              ),
 	              React.createElement(
 	                'div',
@@ -21607,7 +21551,9 @@
 	                  React.createElement(
 	                    'div',
 	                    { className: 'chart-stage' },
-	                    React.createElement('img', { 'data-src': 'holder.js/100%x240/white' })
+	                    React.createElement(Chart, {
+	                      data: this.state.data,
+	                      domain: this.state.domain })
 	                  ),
 	                  React.createElement(
 	                    'div',
@@ -21788,20 +21734,21 @@
 	  },
 
 	  componentDidMount: function () {
-	    alert("Compenent did mount");
+	    console.log("Compenent did mount");
+	    var el = this.refs.Chart01;
 
-	    var el = this.getDOMNode();
 	    d3Chart.create(el, {
 	      width: '100%',
 	      height: '300px'
 	    }, this.getChartState());
-	    alert("D3 chart created");
+
+	    console.log("D3 chart created");
 	  },
 
 	  componentDidUpdate: function () {
-	    alert("Compenent did update");
+	    console.log("Compenent did update");
 
-	    var el = this.getDOMNode();
+	    var el = this.refs.Chart01;
 	    d3Chart.update(el, this.getChartState());
 	  },
 
@@ -21813,15 +21760,16 @@
 	  },
 
 	  componentWillUnmount: function () {
-	    alert("Compenent will unmount");
-	    var el = this.getDOMNode();
+	    console.log("Compenent will unmount");
+
+	    var el = this.refs.Chart01;
 	    d3Chart.destroy(el);
 	  },
 
 	  render: function () {
-	    alert("Chart rendering");
+	    console.log("Chart rendering");
 
-	    return React.createElement('div', { className: 'Chart' });
+	    return React.createElement('div', { className: 'Chart', ref: 'Chart01' });
 	  }
 	});
 
@@ -21833,51 +21781,71 @@
 
 	var d3 = __webpack_require__(181);
 
-	var d3Chart = {
-	  create: function (el, props, state) {
-	    alert(el);
-	    alert(props);
-	    alert(state);
-	    var svg = d3.select(el).append('svg').attr('class', 'd3').attr('width', props.width).attr('height', props.height);
+	var d3Chart = {};
 
-	    svg.append('g').attr('class', 'd3-points');
+	d3Chart.create = function (el, props, state) {
+	  var svg = d3.select(el).append('svg').attr('class', 'd3').attr('width', props.width).attr('height', props.height);
 
-	    this.update(el, state);
-	  },
+	  svg.append('g').attr('class', 'd3-points');
 
-	  _drawPoints: function (el, scales, data) {
-	    var g = d3.select(el).selectAll('.d3-points');
+	  this.update(el, state);
+	};
 
-	    var point = g.selectAll('.d3-point').data(data, function (d) {
-	      return d.id;
-	    });
-
-	    // ENTER
-	    point.enter().append('circle').attr('class', 'd3-point');
-
-	    // ENTER & UPDATE
-	    point.attr('cx', function (d) {
-	      return scales.x(d.x);
-	    }).attr('cy', function (d) {
-	      return scales.y(d.y);
-	    }).attr('r', function (d) {
-	      return scales.z(d.z);
-	    });
-
-	    // EXIT
-	    point.exit().remove();
-	  },
-
-	  update: function (el, state) {
-	    // Re-compute the scales, and render the data points
-	    var scales = this._scales(el, state.domain);
-	    this._drawPoints(el, scales, state.data);
-	  },
-
-	  destroy: function (el) {
-	    // Any clean-up would go here
-	    // in this example there is nothing to do
+	d3Chart._scales = function (el, domain) {
+	  if (!domain) {
+	    return null;
 	  }
+
+	  var width = el.offsetWidth;
+	  var height = el.offsetHeight;
+
+	  var x = d3.scaleLinear().range([0, width]).domain(domain.x);
+	  var y = d3.scaleLinear().range([height, 0]).domain(domain.y);
+	  var z = d3.scaleLinear().range([5, 20]).domain([1, 10]);
+
+	  return { x: x, y: y, z: z };
+	};
+
+	d3Chart._drawPoints = function (el, scales, data) {
+	  var g = d3.select(el).selectAll('.d3-points');
+
+	  var point = g.selectAll('.d3-point').data(data, function (d) {
+	    return d.id;
+	  });
+
+	  // ENTER
+	  point.enter().append('circle').attr('class', 'd3-point').attr('cx', function (d) {
+	    return scales.x(d.x);
+	  }).attr('cy', function (d) {
+	    return scales.y(d.y);
+	  }).attr('r', function (d) {
+	    return scales.z(d.z);
+	  });
+
+	  // UPDATE
+	  point.attr('cx', function (d) {
+	    return scales.x(d.x);
+	  }).attr('cy', function (d) {
+	    return scales.y(d.y);
+	  }).attr('r', function (d) {
+	    return scales.z(d.z);
+	  });
+
+	  // EXIT
+	  point.exit().remove();
+	};
+
+	d3Chart.update = function (el, state) {
+	  // Re-compute the scales, and render the data points
+	  console.log("Update d3Chart");
+
+	  var scales = this._scales(el, state.domain);
+	  this._drawPoints(el, scales, state.data);
+	};
+
+	d3Chart.destroy = function (el) {
+	  // Any clean-up would go here
+	  // in this example there is nothing to do
 	};
 
 	module.exports = d3Chart;
@@ -38280,6 +38248,77 @@
 
 	})));
 
+
+/***/ },
+/* 182 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var NavBar = React.createClass({
+	  displayName: "NavBar",
+
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      { className: "navbar navbar-inverse", role: "navigation" },
+	      React.createElement(
+	        "div",
+	        { className: "container-fluid" },
+	        React.createElement(
+	          "div",
+	          { className: "navbar-header" },
+	          React.createElement(
+	            "button",
+	            { type: "button", className: "navbar-toggle", "data-toggle": "collapse", "data-target": ".navbar-collapse" },
+	            React.createElement(
+	              "span",
+	              { className: "sr-only" },
+	              "Toggle navigation"
+	            ),
+	            React.createElement("span", { className: "icon-bar" }),
+	            React.createElement("span", { className: "icon-bar" }),
+	            React.createElement("span", { className: "icon-bar" })
+	          ),
+	          React.createElement(
+	            "a",
+	            { className: "navbar-brand", href: "/" },
+	            React.createElement("span", { className: "glyphicon glyphicon-chevron-left" }),
+	            "Dashboard"
+	          )
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "navbar-collapse collapse" },
+	          React.createElement(
+	            "ul",
+	            { className: "nav navbar-nav navbar-left" },
+	            React.createElement(
+	              "li",
+	              null,
+	              React.createElement(
+	                "a",
+	                { href: "s/home" },
+	                "Home"
+	              )
+	            ),
+	            React.createElement(
+	              "li",
+	              null,
+	              React.createElement(
+	                "a",
+	                { href: "/team" },
+	                "Team"
+	              )
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = NavBar;
 
 /***/ }
 /******/ ]);
