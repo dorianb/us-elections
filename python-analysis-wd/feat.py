@@ -75,6 +75,8 @@ new_states=[]
 winners=[]
 
 
+trump_elect_feat_per_state=[]
+clinton_elect_feat_per_state=[]
 
 
 #"http://www2.census.gov/programs-surveys/demo/tables/voting/Alabama.xlsx"
@@ -100,12 +102,22 @@ for a_ind in range(len(file_names)):
         #with open(np_unique_state[0]+'_summarize.csv', 'rb') as f:
         with open(state_un+'_summarize.csv', 'rb') as f:
             #dataframe_gr_size.to_csv(f)
-            # print state_un
+            print state_un
             # print pd.read_csv(filepath_or_buffer=f)
             # print "pd.read_csv(filepath_or_buffer=f)"
             # print type(pd.read_csv(filepath_or_buffer=f))
             pd_obj=pd.read_csv(filepath_or_buffer=f,header=0)
+            # print pd_obj
+            # print "pd_obj"
+            # raw_input()
             winners.append(str(pd_obj.sort_values(by=['0'], ascending=[False]).iloc[0]['candidate']))
+            print pd_obj[pd_obj['candidate']=='Clinton']['0']
+            print "pd_obj[pd_obj['candidate']=='Clinton']"
+            print pd_obj[pd_obj['candidate']=='Trump']['0']
+            print "pd_obj[pd_obj['candidate']=='Trump']"
+            
+            print "pd_obj"
+            raw_input()
             # print "type pd.read_csv(filepath_or_buffer=f)"
             # print "bidule"
             
