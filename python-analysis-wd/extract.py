@@ -71,16 +71,17 @@ ancient=[]
 votants=[]
 nombre_de_suffrages_exprimes=[]
 states=[]
-
-
+candidate_list=[]
+times_data_collection=[]
 
 
 #"http://www2.census.gov/programs-surveys/demo/tables/voting/Alabama.xlsx"
 dict_cand_reg={}
 #for file_name in file_names:
 for a_ind in range(len(file_names)):
+    
+    #    if a_ind<3:
     if a_ind<3000:
-        #    if a_ind<3:
         file_name=file_names[a_ind]
 
         print file_name
@@ -144,6 +145,13 @@ for a_ind in range(len(file_names)):
 
         # print "reg_df.groupby(['candidate'], as_index=False).count()"
         np_unique_cand=np.unique(reg_df[['candidate']])
+        # print np_unique_cand
+        # print "np_unique_cand"
+        # print ';'.join(np_unique_cand)
+        candidate_list.append('-'.join(np_unique_cand))
+
+
+        #raw_input()
         np_unique_tme=np.unique(reg_df[['timestamps']])
         # print np_unique_tme
         # print "np_unique_tme"
@@ -151,6 +159,7 @@ for a_ind in range(len(file_names)):
             print 'len(np_unique_tme)>1 ---> multi timing!!!'
             print 'there is  big pb!'
             raw_input()
+        times_data_collection.append(np_unique_tme[0])
         #raw_input()
 
 
@@ -190,7 +199,8 @@ for a_ind in range(len(file_names)):
         # raw_input()
         #np.unique(reg_df[['candidate']])
         print '******************** \n'
-dict_votant_nb_suf_states={'votants':votants,'nombre_de_suffrages_exprimes':nombre_de_suffrages_exprimes,'states':states}
+dict_votant_nb_suf_states={'votants':votants,'nombre_de_suffrages_exprimes':nombre_de_suffrages_exprimes,'states':states,'times_data_collection':times_data_collection,\
+                           'candidate_list':candidate_list}
 
 df_votant_nb_suf_states=pd.DataFrame.from_dict(dict_votant_nb_suf_states)
 df_votant_nb_suf_states.to_csv('df_votant_nb_suf_states.csv')
@@ -203,6 +213,12 @@ print "len(nombre_de_suffrages_exprimes)"
 
 print len(states)
 print "len(states)"
+
+print len(times_data_collection)
+print "len(times_data_collection)"
+
+print len(candidate_list)
+print 'len(candidate_list)'
 
 #dict_votant_nb_suf_states[
 
