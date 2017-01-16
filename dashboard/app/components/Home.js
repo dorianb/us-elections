@@ -36,17 +36,7 @@ var Home = React.createClass({
                 <BasicChart />
               </div>
               <div className="col-sm-4">
-                <div className="chart-wrapper">
-                  <div className="chart-title">
-                    Cell Title
-                  </div>
-                  <div className="chart-stage">
-                    <img data-src="holder.js/100%x120/white" />
-                  </div>
-                  <div className="chart-notes">
-                    Notes about this chart
-                  </div>
-                </div>
+                  <BasicChart />
               </div>
               <div className="col-sm-4">
                 <div className="chart-wrapper">
