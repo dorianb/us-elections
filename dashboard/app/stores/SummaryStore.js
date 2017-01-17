@@ -4,11 +4,11 @@ var EventEmitter = require('events').EventEmitter;
 var merge = require('merge');
 
 // Internal object of
-var _items = {};
+var _data = {};
 
 // Method to load items from action data
 function loadSummary(data) {
-  if(data) _items = data.items;
+  if(data) _data = data.data;
 }
 
 // Merge our store with Node's Event Emitter
@@ -16,7 +16,7 @@ var SummaryStore = merge(EventEmitter.prototype, {
 
   // Returns all shoes
   getAll: function() {
-    return _items;
+    return _data;
   },
 
   emitChange: function() {

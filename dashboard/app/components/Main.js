@@ -1,5 +1,5 @@
 var React = require('react');
-var Summary = require('./Summary');
+var SummaryContainer = require('../containers/SummaryContainer');
 var Map = require('./Map');
 
 
@@ -9,7 +9,7 @@ var Main = React.createClass({
       <main>
         <div className="container-fluid">
           <div className="row">
-            <Summary />
+            <SummaryContainer />
           </div>
           <div className="row">
             <Map />

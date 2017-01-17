@@ -1,31 +1,32 @@
 var React = require('react');
+
 var Total = require('./Total');
 var Races = require('./Races');
 var PopularVotes = require('./PopularVotes');
 var Middle = require('./Middle');
-var SummaryStore = require('../stores/SummaryStore');
-var SummaryActions = require('../actions/SummaryActions');
-
-function getAppState() {
-  return SummaryStore.getAll();
-}
 
 var Summary = React.createClass({
-  getInitialState: function() {
-    return getAppState();
+  propTypes:  {
+    Clinton: React.PropTypes.shape({
+      electoralVotes: React.PropTypes.number.isRequired,
+      votes: React.PropTypes.string.isRequired
+    }),
+    Trump: React.PropTypes.shape({
+      electoralVotes: React.PropTypes.number.isRequired,
+      votes: React.PropTypes.string.isRequired
+    })
   },
-  componentWillMount: function() {
-    SummaryStore.addChangeListener(this._onChange);
-  },
-  componentDidMount: function() {
-    console.log("Let's load summary");
-    SummaryActions.loadSummary();
-  },
-  componentsWillUnmount: function() {
-    SummaryStore.removeChangeListener(this._onChange);
-  },
-  _onChange: function() {
-    this.setState(getAppState());
+  getDefaultProps: function() {
+    return {
+      Clinton: {
+        electoralVotes: 0,
+        votes: "0"
+      },
+      Trump: {
+        electoralVotes: 0,
+        votes: "0"
+      }
+    };
   },
   render: function () {
     return (
@@ -33,15 +34,15 @@ var Summary = React.createClass({
         <div className="inner">
           <Total class="total-clinton"
             name="Clinton"
-            electoralVotes="232" />
+            electoralVotes={this.props.Clinton.electoralVotes} />
           <Middle />
           <Total class="total-trump"
             name="Trump"
-            electoralVotes="306" />
+            electoralVotes={this.props.Trump.electoralVotes} />
           <Races />
           <PopularVotes
-            clintonPopularVotes="62,521,739"
-            trumpPopularVotes="61,195,258" />
+            clintonPopularVotes={this.props.Clinton.votes}
+            trumpPopularVotes={this.props.Trump.votes} />
         </div>
       </div>
     );
