@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#  "sudo docker build -t dashboard . & sudo docker tag dashboard:latest 104705712208.dkr.ecr.us-east-1.amazonaws.com/dashboard:latest & sudo docker push 104705712208.dkr.ecr.us-east-1.amazonaws.com/dashboard:latest"
 
 # more bash-friendly output for jq
 JQ="jq --raw-output --exit-status"

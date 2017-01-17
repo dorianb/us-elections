@@ -7,7 +7,8 @@
     "build": "webpack",
     "start": "webpack-dev-server",
     "apache": "sudo cp -R build/* /var/www/html",
-    "deploy": "./deploy.sh"
+    "deploy": "./deploy.sh",
+    "deploy_test": "sudo docker build -t dashboard . & sudo docker tag dashboard:latest 104705712208.dkr.ecr.us-east-1.amazonaws.com/dashboard:latest & sudo docker push 104705712208.dkr.ecr.us-east-1.amazonaws.com/dashboard:latest"
   },
   "author": "",
   "license": "ISC",

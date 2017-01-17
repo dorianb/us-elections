@@ -3,6 +3,8 @@ NoSQL project
 
 ## Dashboard
 
+http://54.91.134.147:88/
+
 ### Install
 
 #### Nodejs and npm
