@@ -81,7 +81,7 @@ var MapView = React.createClass({
 
     render: function () {
         return (
-            <div className="App">
+            <div className="map">
                 { /*<div className="App-options">
                     <RadioGroup name="fruit" selectedValue={this.state.selectedRegion} onChange={this.update}>
                         {Radio => (

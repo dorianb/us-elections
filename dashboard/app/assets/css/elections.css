@@ -169,9 +169,9 @@ header h2.election-header .dem { color: #4c7de0; }
 
 header h2.election-header .gop { color: #e52426; }
 
-#refresh, div.refresh { display: block; font-size: .75rem; color: #6a6969; }
+#refresh, div.refresh { display: block; font-size: 1rem; color: #6a6969; }
 
-#refresh button, div.refresh button { display: inline-block; background: #fff; position: relative; font-size: .9rem; margin: 0; padding: 0 .35rem 0 0; line-height: 1.5rem; border: none; outline: none; cursor: pointer; }
+#refresh button, div.refresh button { display: inline-block; background: #fff; position: relative; font-size: 1.5rem; margin: 0; padding: 0 .35rem 0 0; line-height: 1.5rem; border: none; outline: none; cursor: pointer; }
 
 #refresh button:hover, div.refresh button:hover { background-color: #fff; }
 
@@ -258,7 +258,7 @@ nav .image { display: none; }
 
 #recirculation span { display: block; height: 4rem; }
 
-#changelog { font-size: .85rem; }
+#changelog { padding-top: 5rem; font-size: 2rem; }
 
 #changelog .heading { border-bottom: 1px solid black; }
 
@@ -268,7 +268,7 @@ nav .image { display: none; }
 
 #changelog .heading #refresh span.countdown { line-height: 1.5rem; }
 
-#changelog h3 { display: inline-block; font-family: ProximaNovaCond-Extrabld, Arial, Helvetica, sans-serif; font-weight: bold; text-transform: uppercase; font-size: 1.5rem; line-height: 1; margin: 0; vertical-align: top; }
+#changelog h3 { display: inline-block; font-family: ProximaNovaCond-Extrabld, Arial, Helvetica, sans-serif; font-weight: bold; text-transform: uppercase; line-height: 1; margin: 0; vertical-align: top; }
 
 #changelog ol { list-style: none; margin: 0; padding: 0; }
 
@@ -280,13 +280,13 @@ nav .image { display: none; }
 
 #changelog li.placeholder { padding-left: 0; color: #6a6969; }
 
-#changelog time { display: block; color: #6a6969; font-size: .7rem; }
+#changelog time { display: block; color: #6a6969; font-size: 1rem; }
 
 #changelog span.leader { font-weight: bold; }
 
 #changelog span.race { font-weight: bold; }
 
-#changelog span.state { display: block; position: absolute; left: 0; top: 0; font-size: 1.5rem; vertical-align: -.25rem; }
+#changelog span.state { display: block; position: absolute; left: 0; top: 0; font-size: 2rem; vertical-align: -.25rem; }
 
 #changelog span.won::after { content: ''; display: inline-block; font-size: 1rem; width: 1.125rem; height: 1rem; line-height: 1; background: url(/2016/results/images/dashboard/win-confetti-2fa3df6c.svg) no-repeat right center; }
 
