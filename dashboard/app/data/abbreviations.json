@@ -1,4 +1,4 @@
-var abbreviations = {
+{
   "AL": "Alabama",
   "AK": "Alaska",
   "AZ": "Arizona",
@@ -57,6 +57,4 @@ var abbreviations = {
   "PW": "Palau",
   "PR": "Puerto Rico",
   "VI": "Virgin Islands"
-};
-
-module.exports = abbreviations;
+}

@@ -48,6 +48,6 @@ var electoralVotes = {
   "AK": 32,
   "AR": 6,
   "AL": 32
-}
+};
 
 module.exports = electoralVotes;

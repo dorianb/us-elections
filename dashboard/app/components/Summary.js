@@ -3,12 +3,29 @@ var Total = require('./Total');
 var Races = require('./Races');
 var PopularVotes = require('./PopularVotes');
 var Middle = require('./Middle');
+var SummaryStore = require('../stores/SummaryStore');
+var SummaryActions = require('../actions/SummaryActions');
+
+function getAppState() {
+  return SummaryStore.getAll();
+}
 
 var Summary = React.createClass({
   getInitialState: function() {
-    return {
-      reference: "Summary"
-    };
+    return getAppState();
+  },
+  componentWillMount: function() {
+    SummaryStore.addChangeListener(this._onChange);
+  },
+  componentDidMount: function() {
+    console.log("Let's load summary");
+    SummaryActions.loadSummary();
+  },
+  componentsWillUnmount: function() {
+    SummaryStore.removeChangeListener(this._onChange);
+  },
+  _onChange: function() {
+    this.setState(getAppState());
   },
   render: function () {
     return (
