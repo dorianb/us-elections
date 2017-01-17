@@ -8,7 +8,7 @@ http://54.91.134.147:88/
 ### Install
 
 #### Nodejs and npm
-Sur Unbuntu:
+Sur Ubuntu:
 ```
 sudo apt-get install node nodejs-legacy npm
 ```

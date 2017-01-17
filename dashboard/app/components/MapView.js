@@ -1,6 +1,8 @@
 var React = require('react');
 var d3 = require('d3');
 var Datamap = require('./Datamap');
+var MapLegend = require('./MapLegend');
+
 var results = require('../data/results');
 var electoralVotes = require('../data/electoralVotes');
 
@@ -42,8 +44,8 @@ var MapView = React.createClass({
           labels: true,
           data: dataset,
           fills: {
-            'Republican': '#CC4731',
-            'Democrat': '#306596',
+            'Republican': '#e52426',
+            'Democrat': '#4c7de0',
             'Heavy Democrat': '#667FAF',
             'Light Democrat': '#A9C0DE',
             'Heavy Republican': '#CA5E5B',
@@ -82,22 +84,8 @@ var MapView = React.createClass({
     render: function () {
         return (
             <div className="map">
-                { /*<div className="App-options">
-                    <RadioGroup name="fruit" selectedValue={this.state.selectedRegion} onChange={this.update}>
-                        {Radio => (
-                            <div>
-                                <Radio value="AMR"/>AMR
-                                <Radio value="APAC"/>APAC
-                                <Radio value="EMEA"/>EMEA
-                                <Radio value="ALL"/>ALL
-                            </div>
-                        )}
-                    </RadioGroup>
-
-                </div>*/ }
-                <div className="App-map">
-                    <Datamap {...this.state}/>
-                </div>
+              <MapLegend />
+              <Datamap {...this.state}/>
             </div>
         );
     }

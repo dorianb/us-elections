@@ -1,5 +1,5 @@
 var React = require('react');
-var MapView = require('../D3Components/MapView');
+var MapView = require('./MapView');
 var MapInfo = require('./MapInfo');
 
 var Map = React.createClass({
@@ -11,10 +11,10 @@ var Map = React.createClass({
   render: function () {
     return (
       <div className="map-and-map-info">
-        <div className="col-md-10">
+        <div className="col-sm-9">
           <MapView reference={this.state.reference} />
         </div>
-        <div className="col-md-2">
+        <div className="col-sm-3">
           <MapInfo />
         </div>
       </div>

@@ -99,8 +99,8 @@ var Datamap = React.createClass({
 
       var style = {
           position: 'relative',
-          width: '100%',
-          height: '50%'
+          width: '110%',
+          height: '100%'
       };
 
       return <div ref={this.props.reference} style={style}></div>;

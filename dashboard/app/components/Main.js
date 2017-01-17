@@ -9,14 +9,10 @@ var Main = React.createClass({
       <main>
         <div className="container-fluid">
           <div className="row">
-            <div className="col-sm-12">
-              <Summary />
-            </div>
+            <Summary />
           </div>
           <div className="row">
-            <div className="col-sm-12">
-              <Map />
-            </div>
+            <Map />
           </div>
         </div>
       </main>

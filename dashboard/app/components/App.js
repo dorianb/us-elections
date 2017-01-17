@@ -1,6 +1,5 @@
 var React = require('react');
 var Header = require('./Header');
-var NavBar = require('./NavBar');
 var Main = require('./Main');
 
 // http://elections.huffingtonpost.com/2016/results/president
