@@ -269,13 +269,16 @@ df_votant_nb_suf_states['extracted_total_nb_people_able_to_vote'] = pd.Series(ex
 
 
 
-df_votant_nb_suf_states['abstention_ratio'] = df_votant_nb_suf_states.apply(lambda row: 1-row['votants']/row['extracted_total_nb_people_able_to_vote'],axis=1)
-df_votant_nb_suf_states['abstention_ratio_no_blanc'] = df_votant_nb_suf_states.apply(lambda row: 1-row['nombre_de_suffrages_exprimes']/row['extracted_total_nb_people_able_to_vote'],axis=1)
+# df_votant_nb_suf_states['abstention_ratio'] = df_votant_nb_suf_states.apply(lambda row: 1-row['votants']/row['extracted_total_nb_people_able_to_vote'],axis=1)
+# df_votant_nb_suf_states['abstention_ratio_no_blanc'] = df_votant_nb_suf_states.apply(lambda row: 1-row['nombre_de_suffrages_exprimes']/row['extracted_total_nb_people_able_to_vote'],axis=1)
+df_votant_nb_suf_states['abstention_ratio'] = df_votant_nb_suf_states.apply(lambda row: row['votants']/row['extracted_total_nb_people_able_to_vote'],axis=1)
+df_votant_nb_suf_states['abstention_ratio_no_blanc'] = df_votant_nb_suf_states.apply(lambda row: row['nombre_de_suffrages_exprimes']/row['extracted_total_nb_people_able_to_vote'],axis=1)
 
 print df_votant_nb_suf_states[['abstention_ratio','states']]
 print df_votant_nb_suf_states[['abstention_ratio_no_blanc','states']]
 print '****** \n ******* \n resultats archi faux il faut utiliser 2016 November General Election.xlsx'
 print "https://docs.google.com/spreadsheets/d/1VAcF0eJ06y_8T4o2gvIL4YcyQy8pxb1zYkgXF76Uu1s/edit#gid=2030096602"
+
 
 
 print 'pour calculer correctement le nombre d"abstentionistes'

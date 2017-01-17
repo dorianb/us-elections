@@ -14,14 +14,14 @@ var NavBar = React.createClass({
             </button>
 
             <a className="navbar-brand" href="/">
-              <span className="glyphicon glyphicon-chevron-left"></span>
-              Dashboard
+              { /*<span className="glyphicon glyphicon-chevron-left"></span>*/ }
+              Elections américaines
             </a>
           </div>
           <div className="navbar-collapse collapse">
             <ul className="nav navbar-nav navbar-left">
-              <li><a href="s/home">Home</a></li>
-              <li><a href="/team">Team</a></li>
+              { /*<li><a href="s/home">Home</a></li>*/ }
+              { /*<li><a href="/team">Team</a></li>*/ }
             </ul>
           </div>
         </div>
