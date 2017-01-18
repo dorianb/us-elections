@@ -5,8 +5,28 @@ var MapInfo = React.createClass({
   getDefaultProps: function() {
     return {};
   },
+  getInitialState: function() {
+    return {};
+  },
+  componentWillReceiveProps: function() {
+    if (this._timer) {
+      clearInterval(this._timer);
+      this._timer = null;
+    }
+    this.setState({timing: 30});
+    var self = this;
+    this._timer = setInterval(function() {
+      self.setState({timing: self.state.timing-1});
+    }, 1000);
+  },
+  componentsWillUnmount: function() {
+    if (this._timer) {
+      clearInterval(this._timer);
+      this._timer = null;
+    }
+  },
   render: function() {
-    infos = [];
+    var infos = [];
     for (var i in this.props) {
       var info = this.props[i];
       var color;
@@ -40,7 +60,7 @@ var MapInfo = React.createClass({
             <h3>Just In</h3>
             <div id="refresh">
               <button className="refresh"></button>
-              <span className="countdown">Refreshing in 19 seconds</span>
+              <span className="countdown">Refreshing in {this.state.timing} seconds</span>
             </div>
           </div>
           <ol>
