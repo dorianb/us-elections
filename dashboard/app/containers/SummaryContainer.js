@@ -4,10 +4,12 @@ var Summary = require('../components/Summary');
 
 var SummaryStore = require('../stores/SummaryStore');
 var DjangoAPI = require('../api/DjangoApi');
-var api = new DjangoAPI("../app/data/summary.json");
+var api = new DjangoAPI('../app/data/summary.json');
 
 function getAppState() {
-  var states = SummaryStore.getAll();
+  var states = SummaryStore.getSummary();
+  console.log("Summary received new state");
+  console.log(states);
   for(var state in states) {
     var votes = states[state].votes.toString();
     var end = votes.length-1;
@@ -43,20 +45,20 @@ var SummaryContainer = React.createClass({
     }, 1000);
   },
   componentWillMount: function() {
-    SummaryStore.addChangeListener(this._onChange);
+    SummaryStore.addChangeListener(this._onChangeSummary);
   },
   componentDidMount: function() {
     this.startPolling();
   },
   componentsWillUnmount: function() {
-    SummaryStore.removeChangeListener(this._onChange);
+    SummaryStore.removeChangeListener(this._onChangeSummary);
 
     if (this._timer) {
       clearInterval(this._timer);
       this._timer = null;
     }
   },
-  _onChange: function() {
+  _onChangeSummary: function() {
     this.setState(getAppState());
   },
   render: function() {

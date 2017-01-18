@@ -4,31 +4,33 @@ var EventEmitter = require('events').EventEmitter;
 var merge = require('merge');
 
 // Internal object of
-var _data = {};
+var _mapInfo = {};
 
 // Method to load items from action data
 function loadMapInfo(data) {
-  if(data) _data = data.data;
+  console.log("MapInfo store");
+  if(data) _mapInfo = data.data;
+  console.log(_mapInfo);
 }
 
 // Merge our store with Node's Event Emitter
 var MapInfoStore = merge(EventEmitter.prototype, {
 
   // Returns all shoes
-  getAll: function() {
-    return _data;
+  getMapInfo: function() {
+    return _mapInfo;
   },
 
   emitChange: function() {
-    this.emit('change');
+    this.emit('MapInfoChange');
   },
 
   addChangeListener: function(callback) {
-    this.on('change', callback);
+    this.on('MapInfoChange', callback);
   },
 
   removeChangeListener: function(callback) {
-    this.removeListener('change', callback);
+    this.removeListener('MapInfoChange', callback);
   }
 
 });

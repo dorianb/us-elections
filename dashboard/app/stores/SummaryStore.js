@@ -4,31 +4,33 @@ var EventEmitter = require('events').EventEmitter;
 var merge = require('merge');
 
 // Internal object of
-var _data = {};
+var _summary = {};
 
 // Method to load items from action data
 function loadSummary(data) {
-  if(data) _data = data.data;
+  console.log("Summary store");
+  if(data) _summary = data.data;
+  console.log(_summary);
 }
 
 // Merge our store with Node's Event Emitter
 var SummaryStore = merge(EventEmitter.prototype, {
 
   // Returns all shoes
-  getAll: function() {
-    return _data;
+  getSummary: function() {
+    return _summary;
   },
 
   emitChange: function() {
-    this.emit('change');
+    this.emit('SummaryChange');
   },
 
   addChangeListener: function(callback) {
-    this.on('change', callback);
+    this.on('SummaryChange', callback);
   },
 
   removeChangeListener: function(callback) {
-    this.removeListener('change', callback);
+    this.removeListener('SummaryChange', callback);
   }
 
 });
