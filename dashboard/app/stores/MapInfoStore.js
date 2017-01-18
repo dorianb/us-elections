@@ -7,12 +7,12 @@ var merge = require('merge');
 var _data = {};
 
 // Method to load items from action data
-function loadSummary(data) {
+function loadMapInfo(data) {
   if(data) _data = data.data;
 }
 
 // Merge our store with Node's Event Emitter
-var SummaryStore = merge(EventEmitter.prototype, {
+var MapInfoStore = merge(EventEmitter.prototype, {
 
   // Returns all shoes
   getAll: function() {
@@ -40,10 +40,10 @@ AppDispatcher.register(function(payload) {
 
   // Define what to do for certain actions
   switch(action.actionType) {
-    case constants.LOAD_SUMMARY:
+    case constants.LOAD_MAP_INFO:
       // Call internal method based upon dispatched action
-      console.log("Look's like you want to load summary");
-      loadSummary(action.data);
+      console.log("Look's like you want to load map info");
+      loadMapInfo(action.data);
       break;
 
     default:
@@ -51,10 +51,10 @@ AppDispatcher.register(function(payload) {
   }
 
   // If action was acted upon, emit change event
-  SummaryStore.emitChange();
+  MapInfoStore.emitChange();
 
   return true;
 
 });
 
-module.exports = SummaryStore;
+module.exports = MapInfoStore;

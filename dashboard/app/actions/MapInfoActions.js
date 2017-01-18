@@ -1,16 +1,16 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var constants = require('../constants/AppConstants');
 
-var SummaryActions = {
+var MapInfoActions = {
 
-  loadSummary: function(data) {
+  loadMapInfo: function(data) {
     console.log("Yeah, let's do it !");
     AppDispatcher.handleAction({
-      actionType: constants.LOAD_SUMMARY,
+      actionType: constants.LOAD_MAP_INFO,
       data: data
     });
   }
 
 };
 
-module.exports = SummaryActions;
+module.exports = MapInfoActions;

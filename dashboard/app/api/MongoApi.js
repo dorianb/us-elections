@@ -1,4 +1,5 @@
 var SummaryActions = require('../actions/SummaryActions');
+var MapInfoActions = require('../actions/MapInfoActions');
 var axios = require('axios');
 
 
@@ -6,7 +7,16 @@ var ElectionsAPI = function(url) {
     this._url = url;
     this._collection = [];
 
-    this._all = function() {
+    this.getSummary = function() {
+      console.log("Request: " + this._url);
+      axios.get(this._url).then(function(data) {
+        console.log(data);
+        this._collection = data;
+        SummaryActions.loadSummary(this._collection);
+      });
+    };
+
+    this.getMapInfo = function() {
       console.log("Request: " + this._url);
       axios.get(this._url).then(function(data) {
         console.log(data);

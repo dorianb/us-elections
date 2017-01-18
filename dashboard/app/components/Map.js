@@ -1,6 +1,6 @@
 var React = require('react');
 var MapView = require('./MapView');
-var MapInfo = require('./MapInfo');
+var MapInfoContainer = require('../containers/MapInfoContainer');
 
 var Map = React.createClass({
   getInitialState: function() {
@@ -15,7 +15,7 @@ var Map = React.createClass({
           <MapView reference={this.state.reference} />
         </div>
         <div className="col-sm-3">
-          <MapInfo />
+          <MapInfoContainer />
         </div>
       </div>
     );
