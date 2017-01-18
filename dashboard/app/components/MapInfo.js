@@ -2,7 +2,37 @@ var React = require('react');
 
 
 var MapInfo = React.createClass({
+  getDefaultProps: function() {
+    return {};
+  },
   render: function() {
+    infos = [];
+    for (var i in this.props) {
+      var info = this.props[i];
+      var color;
+      if(info.subject == "Trump") {
+        color = "gop";
+      }
+      else {
+        color = "dem";
+      }
+      if(info.verb == "won") {
+        color += "-win";
+      }
+      else {
+        color += "-lead";
+      }
+      infos.push(
+        <li key={i} id={"change-" + i} className={color}>
+          <span className="state" data-state-id={info.state_id}></span>
+          <span className={"leader " + color}>{info.subject}</span>
+          <span className={info.verb}> {info.verb}</span>
+          <span className="race" data-race-id={info.state_id}> {info.state} </span>
+          {info.complement}
+          <time dateTime={info.datetime}>{info.time}</time>
+        </li>
+      );
+    }
     return (
       <div className="map-info">
         <div id="changelog">
@@ -14,20 +44,7 @@ var MapInfo = React.createClass({
             </div>
           </div>
           <ol>
-            <li id="change-1011" className="gop-win">
-              <span className="state" data-state-id="MI"></span>
-              <span className="leader gop-win">Trump</span>
-              <span className="won"> won</span>
-              <span className="race" data-race-id="MI"> Michigan</span>
-              <time dateTime="2016-11-28T19:55:35.803Z">8:55 PM CET</time>
-            </li>
-            <li id="change-987" className="dem-win">
-              <span className="state" data-state-id="NH"></span>
-              <span className="leader dem-win">Clinton</span>
-              <span className="won"> won</span>
-              <span className="race" data-race-id="NH"> New Hampshire</span>
-              <time dateTime="2016-11-14T22:04:00.959Z">11:04 PM CET</time>
-            </li>
+            {infos}
           </ol>
         </div>
       </div>

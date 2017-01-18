@@ -4,11 +4,13 @@ var MapInfo = require('../components/MapInfo');
 
 var MapInfoStore = require('../stores/MapInfoStore');
 var MapInfoActions = require('../actions/MapInfoActions');
-var ElectionsAPI = require('../api/DjangoApi');
-var api = new ElectionsAPI("../app/data/timeLine.json");
+var DjangoAPI = require('../api/DjangoApi');
+var api = new DjangoAPI('../app/data/timeLine.json');
 
 function getAppState() {
-  var infos = MapInfoStore.getAll();
+  var infos = MapInfoStore.getMapInfo();
+  console.log("MapInfo received new state");
+  console.log(infos);
   return infos;
 }
 
@@ -35,20 +37,20 @@ var MapInfoContainer = React.createClass({
     }, 1000);
   },
   componentWillMount: function() {
-    MapInfoStore.addChangeListener(this._onChange);
+    MapInfoStore.addChangeListener(this._onChangeMapInfo);
   },
   componentDidMount: function() {
     this.startPolling();
   },
   componentsWillUnmount: function() {
-    MapInfoStore.removeChangeListener(this._onChange);
+    MapInfoStore.removeChangeListener(this._onChangeMapInfo);
 
     if (this._timer) {
       clearInterval(this._timer);
       this._timer = null;
     }
   },
-  _onChange: function() {
+  _onChangeMapInfo: function() {
     this.setState(getAppState());
   },
   render: function() {
