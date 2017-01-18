@@ -1,4 +1,4 @@
-var results = {
+{
   "AZ": {
       "fillKey": "Republican",
       "candidates":  {
@@ -889,6 +889,4 @@ var results = {
         }
       }
   }
-};
-
-module.exports = results;
+}

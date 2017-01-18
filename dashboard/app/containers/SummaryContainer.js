@@ -45,13 +45,13 @@ var SummaryContainer = React.createClass({
     }, 1000);
   },
   componentWillMount: function() {
-    SummaryStore.addChangeListener(this._onChangeSummary);
+    SummaryStore.addChangeListenerSummary(this._onChangeSummary);
   },
   componentDidMount: function() {
     this.startPolling();
   },
   componentsWillUnmount: function() {
-    SummaryStore.removeChangeListener(this._onChangeSummary);
+    SummaryStore.removeChangeListenerSummary(this._onChangeSummary);
 
     if (this._timer) {
       clearInterval(this._timer);

@@ -3,15 +3,17 @@ var d3 = require('d3');
 var Datamap = require('./Datamap');
 var MapLegend = require('./MapLegend');
 
-var results = require('../data/results');
 var electoralVotes = require('../data/electoralVotes');
 
 var MapView = React.createClass({
-    componentWillMount: function() {
+    options: {},
+    componentWillUpdate: function(nextProps, nextStates) {
       var dataset = {};
 
-      for(var state in results) {
-        dataset[state] = results[state];
+      console.log("Map View gets results");
+      console.log(nextProps);
+      for(var state in nextProps) {
+        dataset[state] = nextProps[state];
         dataset[state].electoralVotes = electoralVotes[state];
       }
 
@@ -38,8 +40,8 @@ var MapView = React.createClass({
          };
       });*/
 
-      this.setState({
-          reference: this.props.reference,
+      this.options = {
+          reference: 'Map',
           scope: 'usa',
           labels: true,
           data: dataset,
@@ -78,14 +80,14 @@ var MapView = React.createClass({
                 + '</div>';
             }
           }
-       });
+       };
     },
 
     render: function () {
         return (
             <div className="map">
               <MapLegend />
-              <Datamap {...this.state}/>
+              <Datamap {...this.options}/>
             </div>
         );
     }

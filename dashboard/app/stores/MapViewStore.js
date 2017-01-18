@@ -4,33 +4,33 @@ var EventEmitter = require('events').EventEmitter;
 var merge = require('merge');
 
 // Internal object of
-var _mapInfo = {};
+var _mapView = {};
 
 // Method to load items from action data
-function loadMapInfo(data) {
-  console.log("MapInfo store");
-  if(data) _mapInfo = data.data;
-  console.log(_mapInfo);
+function loadMapView(data) {
+  console.log("MapView store");
+  if(data) _mapView = data.data;
+  console.log(_mapView);
 }
 
 // Merge our store with Node's Event Emitter
-var MapInfoStore = merge(EventEmitter.prototype, {
+var MapViewStore = merge(EventEmitter.prototype, {
 
   // Returns all shoes
-  getMapInfo: function() {
-    return _mapInfo;
+  getMapView: function() {
+    return _mapView;
   },
 
-  emitChangeMapInfo: function() {
-    this.emit('MapInfoChange');
+  emitChangeMapView: function() {
+    this.emit('MapViewChange');
   },
 
-  addChangeListenerMapInfo: function(callback) {
-    this.on('MapInfoChange', callback);
+  addChangeListenerMapView: function(callback) {
+    this.on('MapViewChange', callback);
   },
 
-  removeChangeListenerMapInfo: function(callback) {
-    this.removeListener('MapInfoChange', callback);
+  removeChangeListenerMapView: function(callback) {
+    this.removeListener('MapViewChange', callback);
   }
 
 });
@@ -42,12 +42,12 @@ AppDispatcher.register(function(payload) {
 
   // Define what to do for certain actions
   switch(action.actionType) {
-    case constants.LOAD_MAP_INFO:
+    case constants.LOAD_MAP_VIEW:
       // Call internal method based upon dispatched action
-      console.log("Look's like you want to load map info");
-      loadMapInfo(action.data);
+      console.log("Look's like you want to load map view");
+      loadMapView(action.data);
       // If action was acted upon, emit change event
-      MapInfoStore.emitChangeMapInfo();
+      MapViewStore.emitChangeMapView();
       break;
 
     default:
@@ -58,4 +58,4 @@ AppDispatcher.register(function(payload) {
 
 });
 
-module.exports = MapInfoStore;
+module.exports = MapViewStore;

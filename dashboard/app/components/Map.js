@@ -1,18 +1,13 @@
 var React = require('react');
-var MapView = require('./MapView');
+var MapViewContainer = require('../containers/MapViewContainer');
 var MapInfoContainer = require('../containers/MapInfoContainer');
 
 var Map = React.createClass({
-  getInitialState: function() {
-    return {
-      reference: "Map"
-    };
-  },
   render: function () {
     return (
       <div className="map-and-map-info">
         <div className="col-sm-9">
-          <MapView reference={this.state.reference} />
+          <MapViewContainer />
         </div>
         <div className="col-sm-3">
           <MapInfoContainer />

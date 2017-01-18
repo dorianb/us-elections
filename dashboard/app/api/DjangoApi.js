@@ -1,5 +1,6 @@
 var SummaryActions = require('../actions/SummaryActions');
 var MapInfoActions = require('../actions/MapInfoActions');
+var MapViewActions = require('../actions/MapViewActions');
 var axios = require('axios');
 
 
@@ -22,6 +23,15 @@ var ElectionsAPI = function(url) {
         console.log(data);
         this._collection = data;
         MapInfoActions.loadMapInfo(this._collection);
+      });
+    };
+
+    this.getMapView = function() {
+      console.log("Request: " + this._url);
+      axios.get(this._url).then(function(data) {
+        console.log(data);
+        this._collection = data;
+        MapViewActions.loadMapView(this._collection);
       });
     };
 

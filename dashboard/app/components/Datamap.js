@@ -28,15 +28,26 @@ var Datamap = React.createClass({
     },
 
     componentDidMount: function () {
-      console.log("Datamap compnent did mount");
+      console.log("Datamap component did mount");
 
-      this.drawMap();
+      //this.drawMap();
     },
 
-    componentWillReceiveProps: function () {
+    componentWillReceiveProps: function (nextProps) {
       console.log("Datamap component received props");
 
       this.clear();
+    },
+
+    shouldComponentUpdate: function (nextProps, nextState) {
+
+      console.log("Should component update ?");
+      if(Object.keys(nextProps.data).length > 0) {
+        console.log("YES");
+        return true;
+      }
+      console.log("NO");
+      return false;
     },
 
     componentDidUpdate: function () {
@@ -55,10 +66,14 @@ var Datamap = React.createClass({
     clear: function() {
       console.log("Datamap is clearing");
 
-      var container = this.refs.container;
+      var container = this.refs.Map;
+      console.log("Refs");
+      console.log(this.refs);
       for (var child of Array.from(container.childNodes)) {
+        console.log("Removing child");
         container.removeChild(child);
       }
+      console.log("Cleared");
     },
 
     drawMap: function() {
@@ -103,7 +118,7 @@ var Datamap = React.createClass({
           height: '100%'
       };
 
-      return <div ref={this.props.reference} style={style}></div>;
+      return <div ref='Map' id='Map' style={style}></div>;
     }
 });
 
