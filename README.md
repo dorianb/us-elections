@@ -4,7 +4,7 @@ NoSQL project
 ## Dashboard
 Le dashboard est une application écrite avec les frameworks Reactjs et D3js.
 L'architecture Flux a été mise en place pour garantir la stabilité de l'application.
-![alt text](https://cask.scotch.io/2014/10/V70cSEC.png")
+![schema]("https://cask.scotch.io/2014/10/V70cSEC.png")
 
 Le design du site est inspiré de celui du huffingtonpost: http://elections.huffingtonpost.com/2016/results/president
 
