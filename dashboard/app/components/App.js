@@ -11,7 +11,6 @@ var App = React.createClass({
     return (
       <div className="president">
         <Header />
-        {/*<NavBar />*/}
         <Main />
       </div>
     );
