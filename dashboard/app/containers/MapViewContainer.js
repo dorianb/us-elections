@@ -3,9 +3,8 @@ var React = require('react');
 var MapView = require('../components/MapView');
 
 var MapViewStore = require('../stores/MapViewStore');
-var MapViewActions = require('../actions/MapViewActions');
 var DjangoAPI = require('../api/DjangoApi');
-var api = new DjangoAPI('../app/data/results.json');
+var api = new DjangoAPI();
 
 function getAppState() {
   var dataset = MapViewStore.getMapView();

@@ -4,7 +4,7 @@ var Summary = require('../components/Summary');
 
 var SummaryStore = require('../stores/SummaryStore');
 var DjangoAPI = require('../api/DjangoApi');
-var api = new DjangoAPI('../app/data/summary.json');
+var api = new DjangoAPI();
 
 function getAppState() {
   var states = SummaryStore.getSummary();

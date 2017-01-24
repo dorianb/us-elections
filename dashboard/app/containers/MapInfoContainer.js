@@ -3,9 +3,8 @@ var React = require('react');
 var MapInfo = require('../components/MapInfo');
 
 var MapInfoStore = require('../stores/MapInfoStore');
-var MapInfoActions = require('../actions/MapInfoActions');
 var DjangoAPI = require('../api/DjangoApi');
-var api = new DjangoAPI('../app/data/timeLine.json');
+var api = new DjangoAPI();
 
 function getAppState() {
   var infos = MapInfoStore.getMapInfo();
