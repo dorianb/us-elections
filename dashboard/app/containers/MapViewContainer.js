@@ -1,23 +1,23 @@
 var React = require('react');
 
-var MapInfo = require('../components/MapInfo');
+var MapView = require('../components/MapView');
 
-var MapInfoStore = require('../stores/MapInfoStore');
+var MapViewStore = require('../stores/MapViewStore');
 var DjangoAPI = require('../api/DjangoApi');
 var api = new DjangoAPI();
 
 function getAppState() {
-  var infos = MapInfoStore.getMapInfo();
-  console.log("MapInfo received new state");
-  console.log(infos);
-  return infos;
+  var dataset = MapViewStore.getMapView();
+  console.log("MapView received new state");
+  console.log(dataset);
+  return dataset;
 }
 
 function getApiState() {
   return api;
 }
 
-var MapInfoContainer = React.createClass({
+var MapViewContainer = React.createClass({
   getApi: function() {
     return getApiState();
   },
@@ -28,35 +28,35 @@ var MapInfoContainer = React.createClass({
     var self = this;
     setTimeout(function() {
       if (!self.isMounted()) { return; } // abandon
-      self.getApi().getMapInfo();
+      self.getApi().getMapView();
       self._timer = setInterval(function() {
         console.log("Refreshing map info");
-        self.getApi().getMapInfo();
+        self.getApi().getMapView();
       }, 30000);
     }, 1000);
   },
   componentWillMount: function() {
-    MapInfoStore.addChangeListenerMapInfo(this._onChangeMapInfo);
+    MapViewStore.addChangeListenerMapView(this._onChangeMapView);
   },
   componentDidMount: function() {
     this.startPolling();
   },
   componentsWillUnmount: function() {
-    MapInfoStore.removeChangeListenerMapInfo(this._onChangeMapInfo);
+    MapViewStore.removeChangeListenerMapView(this._onChangeMapView);
 
     if (this._timer) {
       clearInterval(this._timer);
       this._timer = null;
     }
   },
-  _onChangeMapInfo: function() {
+  _onChangeMapView: function() {
     this.setState(getAppState());
   },
   render: function() {
     return (
-      <MapInfo {...this.state} />
+      <MapView {...this.state} />
     );
   }
 });
 
-module.exports = MapInfoContainer;
+module.exports = MapViewContainer;

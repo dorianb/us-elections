@@ -1,0 +1,27 @@
+[
+  {
+    "state_id": "MI",
+    "state": "Michigan",
+    "subject": "Trump",
+    "verb": "won",
+    "datetime": "2016-11-28T19:55:35.803Z",
+    "time": "8:55 PM CET"
+  },
+  {
+    "state_id": "NH",
+    "state": "New Hampshire",
+    "subject": "Clinton",
+    "verb": "won",
+    "datetime": "2016-11-14T22:04:00.959Z",
+    "time": "11:04 PM CET"
+  },
+  {
+    "state_id": "AZ",
+    "state": "Arizona",
+    "subject": "Trump",
+    "verb": "led",
+    "complement": "after 100% of votes were counted",
+    "datetime": "2016-11-14T22:04:00.959Z",
+    "time": "10:33 PM CET"
+  }
+]

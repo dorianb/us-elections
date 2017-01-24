@@ -4,7 +4,7 @@ var Summary = require('../components/Summary');
 
 var SummaryStore = require('../stores/SummaryStore');
 var DjangoAPI = require('../api/DjangoApi');
-var api = new DjangoAPI('../app/data/summary.json');
+var api = new DjangoAPI();
 
 function getAppState() {
   var states = SummaryStore.getSummary();
@@ -45,13 +45,13 @@ var SummaryContainer = React.createClass({
     }, 1000);
   },
   componentWillMount: function() {
-    SummaryStore.addChangeListener(this._onChangeSummary);
+    SummaryStore.addChangeListenerSummary(this._onChangeSummary);
   },
   componentDidMount: function() {
     this.startPolling();
   },
   componentsWillUnmount: function() {
-    SummaryStore.removeChangeListener(this._onChangeSummary);
+    SummaryStore.removeChangeListenerSummary(this._onChangeSummary);
 
     if (this._timer) {
       clearInterval(this._timer);

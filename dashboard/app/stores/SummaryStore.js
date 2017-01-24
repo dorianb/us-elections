@@ -21,15 +21,15 @@ var SummaryStore = merge(EventEmitter.prototype, {
     return _summary;
   },
 
-  emitChange: function() {
+  emitChangeSummary: function() {
     this.emit('SummaryChange');
   },
 
-  addChangeListener: function(callback) {
+  addChangeListenerSummary: function(callback) {
     this.on('SummaryChange', callback);
   },
 
-  removeChangeListener: function(callback) {
+  removeChangeListenerSummary: function(callback) {
     this.removeListener('SummaryChange', callback);
   }
 
@@ -46,14 +46,13 @@ AppDispatcher.register(function(payload) {
       // Call internal method based upon dispatched action
       console.log("Look's like you want to load summary");
       loadSummary(action.data);
+      // If action was acted upon, emit change event
+      SummaryStore.emitChangeSummary();
       break;
 
     default:
       return true;
   }
-
-  // If action was acted upon, emit change event
-  SummaryStore.emitChange();
 
   return true;
 

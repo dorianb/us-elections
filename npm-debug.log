@@ -2,19 +2,34 @@
 1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'run', 'start' ]
 2 info using npm@3.5.2
 3 info using node@v4.2.6
+<<<<<<< HEAD
 4 verbose stack Error: ENOENT: no such file or directory, open '/home/hamdi/Documents/Dropbox/Paristech/S1P2/NoSQL/6.Projet/us-elections/package.json'
 4 verbose stack     at Error (native)
 5 verbose cwd /home/hamdi/Documents/Dropbox/Paristech/S1P2/NoSQL/6.Projet/us-elections
+=======
+4 verbose stack Error: ENOENT: no such file or directory, open '/mnt/3A5620DE56209C9F/Dorian/Formation/3. MS BGD Telecom ParisTech 2016-2017/Période 2/bases de données non relationnelles/Projet data/us-elections/package.json'
+4 verbose stack     at Error (native)
+5 verbose cwd /mnt/3A5620DE56209C9F/Dorian/Formation/3. MS BGD Telecom ParisTech 2016-2017/Période 2/bases de données non relationnelles/Projet data/us-elections
+>>>>>>> 3d377a03594a190f882dc453ec5c55a50aaa7f50
 6 error Linux 4.4.0-59-generic
 7 error argv "/usr/bin/nodejs" "/usr/bin/npm" "run" "start"
 8 error node v4.2.6
 9 error npm  v3.5.2
+<<<<<<< HEAD
 10 error path /home/hamdi/Documents/Dropbox/Paristech/S1P2/NoSQL/6.Projet/us-elections/package.json
 11 error code ENOENT
 12 error errno -2
 13 error syscall open
 14 error enoent ENOENT: no such file or directory, open '/home/hamdi/Documents/Dropbox/Paristech/S1P2/NoSQL/6.Projet/us-elections/package.json'
 15 error enoent ENOENT: no such file or directory, open '/home/hamdi/Documents/Dropbox/Paristech/S1P2/NoSQL/6.Projet/us-elections/package.json'
+=======
+10 error path /mnt/3A5620DE56209C9F/Dorian/Formation/3. MS BGD Telecom ParisTech 2016-2017/Période 2/bases de données non relationnelles/Projet data/us-elections/package.json
+11 error code ENOENT
+12 error errno -2
+13 error syscall open
+14 error enoent ENOENT: no such file or directory, open '/mnt/3A5620DE56209C9F/Dorian/Formation/3. MS BGD Telecom ParisTech 2016-2017/Période 2/bases de données non relationnelles/Projet data/us-elections/package.json'
+15 error enoent ENOENT: no such file or directory, open '/mnt/3A5620DE56209C9F/Dorian/Formation/3. MS BGD Telecom ParisTech 2016-2017/Période 2/bases de données non relationnelles/Projet data/us-elections/package.json'
+>>>>>>> 3d377a03594a190f882dc453ec5c55a50aaa7f50
 15 error enoent This is most likely not a problem with npm itself
 15 error enoent and is related to npm not being able to find a file.
 16 verbose exit [ -2, true ]

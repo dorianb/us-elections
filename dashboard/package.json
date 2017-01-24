@@ -7,8 +7,7 @@
     "build": "webpack",
     "start": "webpack-dev-server",
     "apache": "sudo cp -R build/* /var/www/html",
-    "deploy": "./deploy.sh",
-    "deploy_test": "sudo docker build -t dashboard . & sudo docker tag dashboard:latest 104705712208.dkr.ecr.us-east-1.amazonaws.com/dashboard:latest & sudo docker push 104705712208.dkr.ecr.us-east-1.amazonaws.com/dashboard:latest"
+    "deploy": "webpack && sudo docker rmi --force 104705712208.dkr.ecr.us-east-1.amazonaws.com/dashboard dashboard && sudo docker build -t dashboard . && sudo docker tag dashboard:latest 104705712208.dkr.ecr.us-east-1.amazonaws.com/dashboard:latest && sudo docker push 104705712208.dkr.ecr.us-east-1.amazonaws.com/dashboard:latest && ./deploy.sh -c dashboard-cluster-2 -n dashboard-service -t 180 -i 104705712208.dkr.ecr.us-east-1.amazonaws.com/dashboard:latest"
   },
   "author": "",
   "license": "ISC",
