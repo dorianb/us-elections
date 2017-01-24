@@ -1,6 +1,31 @@
 # us-elections
 NoSQL project
 
+## Application web
+L'application web expose des services pour accéder au données. Le serveur web Django est utilisé pour exécuter l'application.
+
+### Install
+
+#### python3 and pip
+```
+sudo apt-get install python pip
+```
+
+#### Modules
+```
+pip install Django mongoengine djangorestframework
+```
+
+### Start
+```
+python manage.py runserver
+```
+
+Si nécessaire, ajouter le dossier où les bibliothèques sont installées:
+```
+export PYTHONPATH=$PYTHONPATH:/opt/anaconda3/lib/python3.5/site-packages"
+```
+
 ## Dashboard
 Le dashboard est une application écrite avec les frameworks Reactjs et D3js.
 

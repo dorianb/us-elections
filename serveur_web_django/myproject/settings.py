@@ -26,7 +26,7 @@ SECRET_KEY = '&yw#mv0keb-zkr1fp^%z3b(g8k-#mxs@04det3!sp$qtl&es4k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+#ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 #ALLOWED_HOSTS = ['ec2-52-56-100-210.eu-west-2.compute.amazonaws.com', '.pythonanywhere.com']
 #ALLOWED_HOSTS = ['127.0.0.1:27017', '.pythonanywhere.com']
 
@@ -39,8 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
 	'django.contrib.staticfiles',
-	'rest_framework',
-    'rest_framework_mongoengine'
+	'rest_framework'
 ]
 
 connect(
