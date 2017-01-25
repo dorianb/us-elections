@@ -1,7 +1,7 @@
 var React = require('react');
 
 var Total = require('./Total');
-var Races = require('./Races');
+var RacesContainer = require('../containers/RacesContainer');
 var PopularVotes = require('./PopularVotes');
 var Middle = require('./Middle');
 
@@ -39,7 +39,7 @@ var Summary = React.createClass({
           <Total class="total-trump"
             name="Trump"
             electoralVotes={this.props.Trump.electoralVotes} />
-          <Races />
+          <RacesContainer />
           <PopularVotes
             clintonPopularVotes={this.props.Clinton.votes}
             trumpPopularVotes={this.props.Trump.votes} />

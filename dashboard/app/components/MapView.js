@@ -46,13 +46,9 @@ var MapView = React.createClass({
           labels: true,
           data: dataset,
           fills: {
-            'Republican': '#e52426',
-            'Democrat': '#4c7de0',
-            'Heavy Democrat': '#667FAF',
-            'Light Democrat': '#A9C0DE',
-            'Heavy Republican': '#CA5E5B',
-            'Light Republican': '#EAA9A8',
-            defaultFill: '#EDDC4E'
+            'Trump': '#e52426',
+            'Clinton': '#4c7de0',
+            defaultFill: '#D3D3D3'
           },
           geographyConfig: {
             highlightOnHover: true,
@@ -61,11 +57,13 @@ var MapView = React.createClass({
             highlightBorderWidth: 3,
             popupTemplate: function(geography, data) {
               var results = '';
-              for(var candidate in data.candidates) {
-                results += '<tr>'
-                  + '<td>'+ candidate + '</td>'
-                  + '<td>' + data.candidates[candidate].votes + '</td>'
-                  + '</tr>';
+              for(var candidate in data) {
+                if(candidate != "electoralVotes" && candidate != "fillKey") {
+                  results += '<tr>'
+                    + '<td>'+ candidate + '</td>'
+                    + '<td>' + data[candidate].votes + '</td>'
+                    + '</tr>';
+                }
               }
               return '<div class="hoverinfo">'
                 + '<strong>' + geography.properties.name + '</strong>'
