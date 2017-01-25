@@ -4,14 +4,14 @@ var MapViewActions = require('../actions/MapViewActions');
 var axios = require('axios');
 
 var URL = "http://127.0.0.1";
-var start_time = new Date().toISOString();
+var start_time = new Date("November 08, 2016 20:00:00").toISOString();
 
 
 var ElectionsAPI = function() {
 
     this.getSummary = function() {
-      //var url = URL + '/summary';
-      var url = '../app/data/summary.json';
+      var url = URL + '/summary';
+      //var url = '../app/data/summary.json';
       console.log("Request: " + url + " at " + start_time);
       axios.get(url, {
         params: {

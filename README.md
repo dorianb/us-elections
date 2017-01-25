@@ -6,6 +6,11 @@ L'application web expose des services pour accéder au données. Le serveur web 
 
 L'application web est déployé en continue sur une instance EC2 Amazon et accessible à cette adresse: http://52.90.157.37/
 
+Les trois services exposés sont:
+http://52.90.157.37/summary?start_time=2016-11-08T20:00:00.000Z
+http://52.90.157.37/map?start_time=2016-11-08T20:00:00.000Z
+http://52.90.157.37/timeline?start_time=2016-11-08T20:00:00.000Z
+
 ### Install
 
 #### python3 and pip
