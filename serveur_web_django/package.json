@@ -4,6 +4,6 @@
   "description": "",
   "scripts": {
     "start": "cd /opt/anaconda3/bin && sudo ./python '/mnt/3A5620DE56209C9F/Dorian/Formation/3. MS BGD Telecom ParisTech 2016-2017/Période 2/bases de données non relationnelles/Projet data/us-elections/serveur_web_django/manage.py' runserver",
-    "deploy": "sudo docker rmi --force 104705712208.dkr.ecr.us-east-1.amazonaws.com/webapp webapp ; sudo docker build -t webapp . && sudo docker tag webapp:latest 104705712208.dkr.ecr.us-east-1.amazonaws.com/webapp:latest && sudo docker push 104705712208.dkr.ecr.us-east-1.amazonaws.com/webapp:latest && ../deploy.sh -c webapp-cluster -n wepapp-service -t 180 -i 104705712208.dkr.ecr.us-east-1.amazonaws.com/webapp:latest"
+    "deploy": "sudo docker rmi --force 104705712208.dkr.ecr.us-east-1.amazonaws.com/webapp webapp ; sudo docker build -t webapp . && sudo docker tag webapp:latest 104705712208.dkr.ecr.us-east-1.amazonaws.com/webapp:latest && sudo docker push 104705712208.dkr.ecr.us-east-1.amazonaws.com/webapp:latest && ../deploy.sh -c webapp-cluster -n webapp-service -t 180 -i 104705712208.dkr.ecr.us-east-1.amazonaws.com/webapp:latest"
   }
 }
