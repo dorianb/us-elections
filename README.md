@@ -4,6 +4,8 @@ NoSQL project
 ## Application web
 L'application web expose des services pour accéder au données. Le serveur web Django est utilisé pour exécuter l'application.
 
+L'application web est déployé en continue sur une instance EC2 Amazon et accessible à cette adresse: http://52.90.157.37/
+
 ### Install
 
 #### python3 and pip
