@@ -23,7 +23,7 @@ python manage.py runserver
 
 Si nécessaire, ajouter le dossier où les bibliothèques sont installées:
 ```
-export PYTHONPATH=$PYTHONPATH:/opt/anaconda3/lib/python3.5/site-packages"
+export PYTHONPATH=$PYTHONPATH:"/opt/anaconda3/lib/python3.5/site-packages"
 ```
 
 ### Deploy
