@@ -1,0 +1,16 @@
+==================================
+0. Connect to elastic ip instance
+==================================
+mongo ec2-52-56-100-210.eu-west-2.compute.amazonaws.com:27017/mydb
+
+
+=========================================================
+1. Get global 10 first minutes results for all candidates
+=========================================================
+db.events.aggregate([{$match:{"Time":{$gte:ISODate("2016-11-08T20:00:00Z"),$lte:ISODate("2016-11-08T20:10:00Z")}}}, { $group: { _id: "Trump", totalPop: { $sum: "$Trump" }, Clinton: { $sum: "$Clinton" } , Autre: { $sum: "$Autre" }, Blanc: { $sum: "$Blanc" }, Castle: { $sum: "$Castle" }, McMullin: { $sum: "$McMullin" }, Stein: { $sum: "$Stein" }, Johnson: { $sum: "$Johnson" } } }])
+
+
+=============================
+1. Get results state by state 
+=============================
+db.events.aggregate([{$match:{"Time":{$gte:ISODate("2016-11-08T20:00:00Z"),$lte:ISODate("2016-11-08T20:10:00Z")}}}, { $group: { _id: "$State", Trump: { $sum: "$Trump" }, Clinton: { $sum: "$Clinton" } , Autre: { $sum: "$Autre" }, Blanc: { $sum: "$Blanc" }, Castle: { $sum: "$Castle" }, McMullin: { $sum: "$McMullin" }, Stein: { $sum: "$Stein" }, Johnson: { $sum: "$Johnson" } } }])

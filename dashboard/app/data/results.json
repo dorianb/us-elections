@@ -1,0 +1,792 @@
+{
+  "AZ": {
+    "fillKey": "Trump",
+    "Trump": {
+      "votes": 1000000,
+      "percent": 50.0
+    },
+    "Clinton": {
+      "votes": 59000,
+      "percent": 22.0
+    },
+    "Autres": {
+      "votes": 10000,
+      "percent": 1.0
+    }
+  },
+  "CO": {
+    "fillKey": "Light Clinton",
+    "Trump": {
+      "votes": 1000000,
+      "percent": 50.0
+    },
+    "Clinton": {
+      "votes": 59000,
+      "percent": 22.0
+    },
+    "Autres": {
+      "votes": 10000,
+      "percent": 1.0
+    }
+  },
+  "DE": {
+    "fillKey": "Clinton",
+    "Trump": {
+      "votes": 1000000,
+      "percent": 50.0
+    },
+    "Clinton": {
+      "votes": 59000,
+      "percent": 22.0
+    },
+    "Autres": {
+      "votes": 10000,
+      "percent": 1.0
+    }
+  },
+  "FL": {
+    "fillKey": "Undecided",
+    "Trump": {
+      "votes": 1000000,
+      "percent": 50.0
+    },
+    "Clinton": {
+      "votes": 59000,
+      "percent": 22.0
+    },
+    "Autres": {
+      "votes": 10000,
+      "percent": 1.0
+    }
+  },
+  "GA": {
+    "fillKey": "Trump",
+    "Trump": {
+      "votes": 1000000,
+      "percent": 50.0
+    },
+    "Clinton": {
+      "votes": 59000,
+      "percent": 22.0
+    },
+    "Autres": {
+      "votes": 10000,
+      "percent": 1.0
+    }
+  },
+  "HI": {
+    "fillKey": "Clinton",
+    "Trump": {
+      "votes": 1000000,
+      "percent": 50.0
+    },
+    "Clinton": {
+      "votes": 59000,
+      "percent": 22.0
+    },
+    "Autres": {
+      "votes": 10000,
+      "percent": 1.0
+    }
+  },
+  "ID": {
+    "fillKey": "Trump",
+    "Trump": {
+      "votes": 1000000,
+      "percent": 50.0
+    },
+    "Clinton": {
+      "votes": 59000,
+      "percent": 22.0
+    },
+    "Autres": {
+      "votes": 10000,
+      "percent": 1.0
+    }
+  },
+  "IL": {
+      "fillKey": "Clinton",
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "IN": {
+      "fillKey": "Trump",
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "IA": {
+      "fillKey": "Light Clinton",
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "KS": {
+      "fillKey": "Trump",
+      "electoralVotes": 6,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "KY": {
+      "fillKey": "Trump",
+      "electoralVotes": 8,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "LA": {
+      "fillKey": "Trump",
+      "electoralVotes": 8,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "MD": {
+      "fillKey": "Clinton",
+      "electoralVotes": 10,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "ME": {
+      "fillKey": "Clinton",
+      "electoralVotes": 4,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "MA": {
+      "fillKey": "Clinton",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "MN": {
+      "fillKey": "Clinton",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "MI": {
+      "fillKey": "Clinton",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "MS": {
+      "fillKey": "Trump",
+      "electoralVotes": 11,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "MO": {
+      "fillKey": "Trump",
+      "electoralVotes": 13,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "MT": {
+      "fillKey": "Trump",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "NC": {
+      "fillKey": "Light Trump",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "NE": {
+      "fillKey": "Trump",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "NV": {
+      "fillKey": "Heavy Clinton",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "NH": {
+      "fillKey": "Light Clinton",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "NJ": {
+      "fillKey": "Clinton",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "NY": {
+      "fillKey": "Clinton",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "ND": {
+      "fillKey": "Trump",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "NM": {
+      "fillKey": "Clinton",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "OH": {
+      "fillKey": "UNDECIDED",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "OK": {
+      "fillKey": "Trump",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "OR": {
+      "fillKey": "Clinton",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "PA": {
+      "fillKey": "Clinton",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "RI": {
+      "fillKey": "Clinton",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "SC": {
+      "fillKey": "Trump",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "SD": {
+      "fillKey": "Trump",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "TN": {
+      "fillKey": "Trump",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "TX": {
+      "fillKey": "Trump",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "UT": {
+      "fillKey": "Trump",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "WI": {
+      "fillKey": "Clinton",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "VA": {
+      "fillKey": "Light Clinton",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "VT": {
+      "fillKey": "Clinton",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "WA": {
+      "fillKey": "Clinton",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "WV": {
+      "fillKey": "Trump",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "WY": {
+      "fillKey": "Trump",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "California": {
+      "fillKey": "Clinton",
+      "electoralVotes": 55,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "CT": {
+      "fillKey": "Clinton",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "AK": {
+      "fillKey": "Trump",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "AR": {
+      "fillKey": "Trump",
+      "electoralVotes": 6,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  },
+  "AL": {
+      "fillKey": "Trump",
+      "electoralVotes": 32,
+        "Trump": {
+          "votes": 1000000,
+          "percent": 50.0
+        },
+        "Clinton": {
+          "votes": 59000,
+          "percent": 22.0
+        },
+        "Autres": {
+          "votes": 10000,
+          "percent": 1.0
+        }
+  }
+}

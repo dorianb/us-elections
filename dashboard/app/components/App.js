@@ -1,15 +1,14 @@
 var React = require('react');
-var NavBar = require('./NavBar');
-var Home = require('./Home');
+var Header = require('./Header');
+var Main = require('./Main');
 
-// http://elections.huffingtonpost.com/2016/results/president
 var App = React.createClass({
 
   render: function () {
     return (
-      <div className="application">
-        <NavBar />
-        <Home />
+      <div className="president">
+        <Header />
+        <Main />
       </div>
     );
   }

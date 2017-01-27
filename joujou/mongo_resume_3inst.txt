@@ -1,0 +1,16 @@
+1) lancer 3 instances aws ubuntu avec règle de sécurité ouvrant le port 27017
+2) créer dossier /data/db sur les trois instances avec autorisation d'accès en écriture
+3) modifier l'adresse 127.0.0.1 dans /etc/mongodb.conf par 0.0.0.0 sur les 3 instances
+4) lancer mongodb avec mongod --replSet "rs0" sur les trois machines
+===================
+5) la suite est à faire uniquement la première fois pour passer une instance en primary et les deux autres ensecondary:
+i. sur l'une des trois instances (qui sera la primary au début) lancer mongo puis taper:
+- rs.initiate()
+- rs.add('@ip-de-l'instance-x:27017')
+- rs.add('@ip-de-l'instance-y:27017')
+
+
+===================
+6)
+rs.slaveOk()
+sur le slave pour pouvoir y lancer des requetes.
