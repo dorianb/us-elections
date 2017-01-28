@@ -1,4 +1,5 @@
 var React = require('react');
+var PieChart = require('./PieChart');
 
 
 var MapInfo = React.createClass({
@@ -7,6 +8,21 @@ var MapInfo = React.createClass({
   },
   getInitialState: function() {
     return {};
+  },
+  resize: function() {
+    console.log("Resizing");
+    var width = this.refs.MapInfo.offsetWidth;
+    var height = this.refs.MapInfo.offsetHeight;
+
+    this.setState({
+      width: width,
+      height: height
+    });
+  },
+  componentDidMount: function() {
+    window.addEventListener("resize", this.resize);
+
+    this.resize();
   },
   componentWillReceiveProps: function() {
     if (this._timer) {
@@ -20,6 +36,8 @@ var MapInfo = React.createClass({
     }, 1000);
   },
   componentsWillUnmount: function() {
+    window.removeEventListener("resize", this.resize);
+
     if (this._timer) {
       clearInterval(this._timer);
       this._timer = null;
@@ -54,7 +72,7 @@ var MapInfo = React.createClass({
       );
     }
     return (
-      <div className="map-info">
+      <div className="map-info" ref="MapInfo">
         <div id="changelog">
           <div className="heading">
             <h3>Just In</h3>
@@ -63,9 +81,12 @@ var MapInfo = React.createClass({
               <span className="countdown">Refreshing in {this.state.timing} seconds</span>
             </div>
           </div>
-          <ol>
+          <p className="text-center">Participation</p>
+          <PieChart {...this.state} />
+
+          {/*<ol>
             {infos}
-          </ol>
+          </ol>*/}
         </div>
       </div>
     );

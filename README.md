@@ -1,6 +1,36 @@
 # us-elections
 NoSQL project
 
+## Base de données
+
+La base de données contient les résultats des élections de 2016 par état.
+
+Exemple de requête:
+```
+rs0:PRIMARY> db.events.findOne()
+{
+    "_id" : ObjectId("588b22fc5617cf6a8756cf0e"),
+    "Time" : ISODate("2016-11-08T20:00:00Z"),
+    "State" : "Minnesota",
+    "Abr" : "MN",
+    "Voters" : 3972330,
+    "Gvoters" : 10,
+    "Autre" : 41657,
+    "Castle" : 9456,
+    "Clinton" : 1367716,
+    "Johnson" : 112972,
+    "McMullin" : 53076,
+    "Stein" : 36985,
+    "Trump" : 1322951
+}
+```
+
+### Connexion à l'instance
+
+```
+mongo --ssl --sslAllowInvalidCertificates loadBalancer-58809977.eu-west-2.elb.amazonaws.com/db
+```
+
 ## Application web
 L'application web expose des services pour accéder au données. Le serveur web Django est utilisé pour exécuter l'application.
 
