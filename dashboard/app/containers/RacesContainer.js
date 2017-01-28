@@ -2,13 +2,43 @@ var React = require('react');
 
 var Races = require('../components/Races');
 var MapViewStore = require('../stores/MapViewStore');
+var _ = require('underscore');
 
 
 function getAppState() {
   var dataset = MapViewStore.getMapView();
-  console.log("Races received new state");
-  console.log(dataset);
-  return dataset;
+  var data = [];
+
+  for(var state in dataset) {
+    var winner = dataset[state].fillKey;
+    if(["Trump", "Clinton"].indexOf(winner) >= 0) {
+      var datum = {
+        state: state,
+        percent: dataset[state].Gvoters / 538 * 100,
+        winner: winner
+      };
+      data.push(datum);
+    }
+  }
+
+  if(!_.isEmpty(data)) {
+    var percent_known = data.reduce(function(a, b) {
+      return {percent: a.percent + b.percent};
+    }).percent;
+
+    var percent_unknown = 100 - percent_known;
+    
+    var datum = {
+      state: "unknown",
+      percent: percent_unknown,
+      winner: "Not determined"
+    };
+    data.push(datum);
+
+    return data;
+  }
+
+  return null;
 }
 
 var RacesContainer = React.createClass({
@@ -25,20 +55,7 @@ var RacesContainer = React.createClass({
     this.setState(getAppState());
   },
   render: function() {
-    var data = []
-    for(var state in this.state) {
-      var winner = this.state[state].fillKey;
-      if(winner != "Trump" && winner!="Clinton") {
-        winner = "Indéterminé";
-      }
-      var datum = {
-        state: state,
-        percent: this.state[state].electoralVotes / 538 * 100,
-        winner: winner
-      };
-      data.push(datum);
-    }
-    return <Races {...data} />;
+    return <Races {...this.state} />;
   }
 });
 

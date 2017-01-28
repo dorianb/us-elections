@@ -8,12 +8,12 @@ var Middle = require('./Middle');
 var Summary = React.createClass({
   propTypes:  {
     Clinton: React.PropTypes.shape({
-      electoralVotes: React.PropTypes.number.isRequired,
-      votes: React.PropTypes.string.isRequired
+      Gvoters: React.PropTypes.number,
+      votes: React.PropTypes.string
     }),
     Trump: React.PropTypes.shape({
-      electoralVotes: React.PropTypes.number.isRequired,
-      votes: React.PropTypes.string.isRequired
+      Gvoters: React.PropTypes.number,
+      votes: React.PropTypes.string
     })
   },
   getDefaultProps: function() {
@@ -34,11 +34,11 @@ var Summary = React.createClass({
         <div className="inner">
           <Total class="total-clinton"
             name="Clinton"
-            electoralVotes={this.props.Clinton.electoralVotes} />
+            electoralVotes={this.props.Clinton.Gvoters} />
           <Middle />
           <Total class="total-trump"
             name="Trump"
-            electoralVotes={this.props.Trump.electoralVotes} />
+            electoralVotes={this.props.Trump.Gvoters} />
           <RacesContainer />
           <PopularVotes
             clintonPopularVotes={this.props.Clinton.votes}

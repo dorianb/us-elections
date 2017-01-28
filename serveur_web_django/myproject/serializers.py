@@ -23,3 +23,35 @@ class EventsSerializer(serializers.Serializer):
                 setattr(instance, k, v)
             return instance
         return Events(**attrs)
+
+
+class SummarySerializer(serializers.Serializer):
+    Clinton = serializers.IntegerField()
+    Trump = serializers.IntegerField()
+
+    def create(self, attrs, instance=None):
+        if instance is not None:
+            for k, v in attrs.iteritems():
+                setattr(instance, k, v)
+            return instance
+        return Events(**attrs)
+
+
+class MapSerializer(serializers.Serializer):
+    _id = serializers.CharField()
+    Gvoters = serializers.IntegerField()
+    Clinton = serializers.IntegerField()
+    Trump = serializers.IntegerField()
+    Castle = serializers.IntegerField()
+    McMullin = serializers.IntegerField()
+    Stein = serializers.IntegerField()
+    Johnson = serializers.IntegerField()
+    Autre = serializers.IntegerField()
+    Blanc = serializers.IntegerField()
+
+    def create(self, attrs, instance=None):
+        if instance is not None:
+            for k, v in attrs.iteritems():
+                setattr(instance, k, v)
+            return instance
+        return Events(**attrs)

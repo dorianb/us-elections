@@ -14,8 +14,8 @@ var ElectionsAPI = function() {
 
     this.getSummary = function() {
       var url = URL + '/summary/';
-      //var url = '../app/data/summary.json';
       console.log("Request: " + url + " at " + time);
+
       axios.get(url, {
         params: {
           start_time: time
@@ -41,9 +41,9 @@ var ElectionsAPI = function() {
     };
 
     this.getMapView = function() {
-      //var url = URL + '/map';
-      var url = '../app/data/results.json';
+      var url = URL + '/map/';
       console.log("Request: " + url + " at " + time);
+      
       axios.get(url, {
         params: {
           start_time: time

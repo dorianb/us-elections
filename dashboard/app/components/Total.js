@@ -7,7 +7,7 @@ var Total = React.createClass({
         <div className="image"></div>
         <h3>{this.props.name}</h3>
         <strong>{this.props.electoralVotes}</strong>
-        <span>electoral votes</span>
+        {/*<span>grands électeurs</span>*/}
       </div>
     );
   }
