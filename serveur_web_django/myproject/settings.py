@@ -65,7 +65,7 @@ ALLOWED_HOSTS = ['52.90.157.37', 'localhost', '127.0.0.1']
 
 CORS_ORIGIN_WHITELIST = (
     'google.com',
-    '52.90.157.37:80',
+    '54.91.134.147:80',
     'localhost:8080',
     '127.0.0.1:8080'
 )

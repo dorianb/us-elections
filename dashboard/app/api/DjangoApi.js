@@ -3,8 +3,8 @@ var MapInfoActions = require('../actions/MapInfoActions');
 var MapViewActions = require('../actions/MapViewActions');
 var axios = require('axios');
 
-// var URL = "http://52.90.157.37";
-var URL = "http://127.0.0.1:8000";
+var URL = "http://52.90.157.37";
+// var URL = "http://127.0.0.1:8000";
 var time = new Date("November 08, 2016 21:10:00");
 var timer = setInterval(function() {
   time.setSeconds(time.getSeconds() + 1)
@@ -43,7 +43,7 @@ var ElectionsAPI = function() {
     this.getMapView = function() {
       var url = URL + '/map/';
       console.log("Request: " + url + " at " + time);
-      
+
       axios.get(url, {
         params: {
           start_time: time
