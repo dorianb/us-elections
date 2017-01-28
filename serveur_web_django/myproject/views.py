@@ -8,8 +8,6 @@ from datetime import datetime
 
 class Summary(APIView):
     renderer_classes = (JSONRenderer, )
-    queryset = Events.objects.all()
-    serializer_class = EventsSerializer
 
     def get(self, request, format=None):
         to = request.query_params['start_time']
@@ -111,8 +109,6 @@ class Summary(APIView):
 
 class Map(APIView):
     renderer_classes = (JSONRenderer, )
-    queryset = Events.objects.all()
-    serializer_class = EventsSerializer
 
     def get(self, request, format=None):
         to = request.query_params['start_time']
@@ -203,3 +199,11 @@ class Map(APIView):
             }
 
         return Response(data)
+
+
+class Timeline(APIView):
+    renderer_classes = (JSONRenderer, )
+
+
+class Turnout(APIView):
+    renderer_classes = (JSONRenderer, )
