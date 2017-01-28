@@ -1,18 +1,21 @@
 from rest_framework import serializers
 from myproject.models import Events
 
-		
+
 class EventsSerializer(serializers.Serializer):
-    Time = serializers.CharField()
-    State = serializers.CharField(max_length=200)
-    Clinton = serializers.CharField(max_length=200)
-    Trump = serializers.CharField(max_length=200)
-    Autre = serializers.CharField(max_length=200)
-    Castle = serializers.CharField(max_length=200)
-    McMullin = serializers.CharField(max_length=200)
-    Blanc = serializers.CharField(max_length=200)
-    Stein = serializers.CharField(max_length=200)
-    Johnson = serializers.CharField(max_length=200)
+    Time = serializers.DateTimeField()
+    State = serializers.CharField()
+    Clinton = serializers.IntegerField()
+    Trump = serializers.IntegerField()
+    Autre = serializers.IntegerField()
+    Castle = serializers.IntegerField()
+    McMullin = serializers.IntegerField()
+    Blanc = serializers.IntegerField()
+    Stein = serializers.IntegerField()
+    Johnson = serializers.IntegerField()
+    Voters = serializers.IntegerField()
+    Gvoters = serializers.IntegerField()
+    Abr = serializers.CharField()
 
     def create(self, attrs, instance=None):
         if instance is not None:

@@ -3,15 +3,16 @@ from mongoengine.fields import *
 
 
 class Events(Document):
-    Time = StringField()
+    Time = DateTimeField()
     State = StringField()
-    Clinton = StringField()
-    Trump = StringField()
-    Autre = StringField()
-    Castle = StringField()
-    McMullin = StringField()
-    Blanc = StringField()
-    Stein = StringField()
-    Johnson = StringField()
-
-    
+    Clinton = LongField()
+    Trump = LongField()
+    Autre = LongField()
+    Castle = LongField()
+    McMullin = LongField()
+    Blanc = LongField()
+    Stein = LongField()
+    Johnson = LongField()
+    Voters = LongField()
+    Gvoters = LongField()
+    Abr = StringField()

@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 ]
 
 connect(
-		db = 'mydb',
+		db = 'db',
 		host = 'loadBalancer-58809977.eu-west-2.elb.amazonaws.com:27017')
 
 MIDDLEWARE = [
