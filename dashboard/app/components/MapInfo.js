@@ -3,8 +3,13 @@ var PieChart = require('./PieChart');
 
 
 var MapInfo = React.createClass({
+  propTypes:  {
+    turnout: React.PropTypes.number
+  },
   getDefaultProps: function() {
-    return {};
+    return {
+      turnout: 0
+    };
   },
   getInitialState: function() {
     return {};
@@ -75,14 +80,15 @@ var MapInfo = React.createClass({
       <div className="map-info" ref="MapInfo">
         <div id="changelog">
           <div className="heading">
-            <h3>Just In</h3>
+            <h3>Statistiques</h3>
             <div id="refresh">
               <button className="refresh"></button>
               <span className="countdown">Refreshing in {this.state.timing} seconds</span>
             </div>
           </div>
+          <br/>
           <p className="text-center">Participation</p>
-          <PieChart {...this.state} />
+          <PieChart {...this.state} {...this.props} />
 
           {/*<ol>
             {infos}

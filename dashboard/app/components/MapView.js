@@ -21,7 +21,8 @@ var MapView = React.createClass({
           },
           geographyConfig: {
             highlightOnHover: true,
-            highlightFillOpacity: 1,
+            highlightFillOpacity: 0,
+            highlightFillColor: 'transparent',
             highlightBorderColor: '#000000',
             highlightBorderWidth: 3,
             popupTemplate: function(geography, data) {
@@ -29,7 +30,7 @@ var MapView = React.createClass({
               var candidates = _.sortBy(Object.keys(data), function(o) { return data[o].votes; });
               for(var i in candidates.reverse()) {
                 var candidate = candidates[i];
-                if(["fillKey", "Gvoters"].indexOf(candidate) < 0) {
+                if(["fillKey", "Gvoters", "turnout"].indexOf(candidate) < 0) {
                   results += '<tr>'
                     + '<td>'+ candidate + '</td>'
                     + '<td>' + data[candidate].votes + '</td>'
@@ -39,9 +40,10 @@ var MapView = React.createClass({
               return '<div class="hoverinfo">'
                 + '<strong>' + geography.properties.name + '</strong>'
                 + '<p>Le gagnant obtient <b>' + data.Gvoters + '</b> grands électeurs</p>'
+                + '<p>L\'abstention est de <b>' + Math.round(data.turnout*10)/10 + '%</b></p>'
                 + '<table>'
                 + '<tr>'
-                + '<th>Candidat</th>'
+                + '<th></th>'
                 + '<th>Votes</th>'
                 + '</tr>'
                 + results

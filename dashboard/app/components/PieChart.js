@@ -3,10 +3,16 @@ var d3 = require('d3');
 
 
 var PieChart = React.createClass({
+  propTypes:  {
+    width: React.PropTypes.number,
+    height: React.PropTypes.number,
+    turnout: React.PropTypes.number
+  },
   getDefaultProps: function() {
     return {
       width: 0,
-      height: 0
+      height: 0,
+      turnout: 0
     };
   },
   componentDidUpdate: function() {
@@ -23,7 +29,7 @@ var PieChart = React.createClass({
 
     var cScale = d3.scaleLinear().domain([0, 100]).range([0, 2 * Math.PI]);
 
-    data = [[0,70,"#AA8888"]]
+    data = [[0, this.props.turnout, "#9DF696", "2rem"]]
 
     var vis = d3.select("#svg_donut");
 
@@ -37,8 +43,9 @@ var PieChart = React.createClass({
       .data(data)
       .enter()
       .append("text")
-      .attr("x", function(d) { return radius/2-15; })
-      .attr("y", function(d) { return radius/2+5; })
+      .attr("x", function(d) { return radius/2-radius/12; })
+      .attr("y", function(d) { return radius/2+radius/40; })
+      .attr("font-size", function(d) { return d[3]; })
       .text(function (d) { return d[1] + "%"; });
 
     vis.selectAll("path")
@@ -52,7 +59,6 @@ var PieChart = React.createClass({
   render: function () {
     return (
       <svg id="svg_donut" width={this.props.width} height={this.props.height*2}>
-        <text x="100" y="100">Hello!</text>
       </svg>
     );
   }

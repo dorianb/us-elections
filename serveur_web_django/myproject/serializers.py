@@ -2,32 +2,10 @@ from rest_framework import serializers
 from myproject.models import Events
 
 
-class EventsSerializer(serializers.Serializer):
-    Time = serializers.DateTimeField()
-    State = serializers.CharField()
-    Clinton = serializers.IntegerField()
-    Trump = serializers.IntegerField()
-    Autre = serializers.IntegerField()
-    Castle = serializers.IntegerField()
-    McMullin = serializers.IntegerField()
-    Blanc = serializers.IntegerField()
-    Stein = serializers.IntegerField()
-    Johnson = serializers.IntegerField()
-    Voters = serializers.IntegerField()
-    Gvoters = serializers.IntegerField()
-    Abr = serializers.CharField()
-
-    def create(self, attrs, instance=None):
-        if instance is not None:
-            for k, v in attrs.iteritems():
-                setattr(instance, k, v)
-            return instance
-        return Events(**attrs)
-
-
 class SummarySerializer(serializers.Serializer):
-    Clinton = serializers.IntegerField()
-    Trump = serializers.IntegerField()
+    turnout = serializers.FloatField()
+    Clinton = serializers.DictField()
+    Trump = serializers.DictField()
 
     def create(self, attrs, instance=None):
         if instance is not None:
@@ -40,14 +18,16 @@ class SummarySerializer(serializers.Serializer):
 class MapSerializer(serializers.Serializer):
     _id = serializers.CharField()
     Gvoters = serializers.IntegerField()
-    Clinton = serializers.IntegerField()
-    Trump = serializers.IntegerField()
-    Castle = serializers.IntegerField()
-    McMullin = serializers.IntegerField()
-    Stein = serializers.IntegerField()
-    Johnson = serializers.IntegerField()
-    Autre = serializers.IntegerField()
-    Blanc = serializers.IntegerField()
+    turnout = serializers.FloatField()
+    fillKey = serializers.CharField()
+    Clinton = serializers.DictField()
+    Trump = serializers.DictField()
+    Castle = serializers.DictField()
+    McMullin = serializers.DictField()
+    Stein = serializers.DictField()
+    Johnson = serializers.DictField()
+    Autre = serializers.DictField()
+    Blanc = serializers.DictField()
 
     def create(self, attrs, instance=None):
         if instance is not None:

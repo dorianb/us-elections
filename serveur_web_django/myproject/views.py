@@ -1,5 +1,5 @@
 from myproject.models import Events
-from myproject.serializers import EventsSerializer, SummarySerializer, MapSerializer
+from myproject.serializers import SummarySerializer, MapSerializer
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -14,29 +14,6 @@ class Summary(APIView):
         format_str = '%Y-%m-%dT%H:%M:%S.%fZ'
         to = datetime.strptime(to, format_str)
 
-        pipeline = [{
-            '$match': {
-                'Time': {
-                    '$lte': to
-                    }
-                }
-            },
-            {
-                '$group': {
-                    '_id': "summary",
-                    'Clinton': {
-                        '$sum': "$Clinton"
-                    },
-                    'Trump': {
-                        '$sum': "$Trump"
-                    }
-                }
-            }
-        ]
-
-        queryset = Events.objects.aggregate(*pipeline)
-        summary = SummarySerializer(queryset, many=True)
-
         pipeline = [
             {
                 '$match': {
@@ -46,63 +23,98 @@ class Summary(APIView):
                 }
             },
             {
-                '$group': {
-                    '_id': '$Abr',
-                    'Gvoters': {
-                        '$first': '$Gvoters'
+                '$project': {
+                    'Trump': {'$ifNull': ["$Trump", 0]},
+                    'Clinton': {'$ifNull': ["$Clinton", 0]},
+                    'Autre': {'$ifNull': ["$Autre", 0]},
+                    'Blanc': {'$ifNull': ["$Blanc", 0]},
+                    'Castle': {'$ifNull': ["$Castle", 0]},
+                    'McMullin': {'$ifNull': ["$McMullin", 0]},
+                    'Stein': {'$ifNull': ["$Stein", 0]},
+                    'Johnson': {'$ifNull': ["$Johnson", 0]},
+                    'Gvoters': 1,
+                    'Voters': 1,
+                    '_id': '$Abr'
+                }
+            },
+            {
+                '$project': {
+                    'Trump': 1,
+                    'Clinton': 1,
+                    'Gvoters': 1,
+                    'Voters': 1,
+                    '_id': 1,
+                    'max_votes': {
+                        '$max': ["$Trump", "$Clinton", "$Autre", "$Blanc", "$Castle", "$McMullin", "$Stein", "$Johnson"]
                     },
+                    'total_votes': {
+                        '$add': ["$Trump", "$Clinton", "$Autre", "$Blanc", "$Castle", "$McMullin", "$Stein", "$Johnson"]
+                    }
+                }
+            },
+            {
+                '$project': {
+                    'Trump': 1,
+                    'Clinton': 1,
+                    '_id': 1,
+                    'Clinton_GE': {
+                        '$cond': {
+                            'if': {'$eq': ['$max_votes', '$Clinton']}, 'then': '$Gvoters', 'else': 0}
+                    },
+                    'Trump_GE': {
+                        '$cond': {
+                            'if': {'$eq': ['$max_votes', '$Trump']}, 'then': '$Gvoters', 'else': 0}
+                    },
+                    'ratio': {
+                        '$divide': ['$total_votes', '$Voters']
+                    }
+                }
+            },
+            {
+                '$group': {
+                    '_id': "",
                     'Trump': {
-                        '$sum': "$Trump"
+                        '$sum': '$Trump'
                     },
                     'Clinton': {
                         '$sum': "$Clinton"
                     },
-                    'Autre': {
-                        '$sum': "$Autre"
+                    'Trump_GE': {
+                        '$sum': '$Trump_GE'
                     },
-                    'Blanc': {
-                        '$sum': "$Blanc"
+                    'Clinton_GE': {
+                        '$sum': '$Clinton_GE'
                     },
-                    'Castle': {
-                        '$sum': "$Castle"
+                    'ratio': {
+                        '$avg': '$ratio'
+                    }
+                }
+            },
+            {
+                '$project': {
+                    'turnout': {
+                        '$multiply': ['$ratio', 100]
                     },
-                    'McMullin': {
-                        '$sum': "$McMullin"
+                    'Trump': {
+                        'votes': '$Trump',
+                        'Gvoters': '$Trump_GE'
                     },
-                    'Stein': {
-                        '$sum': "$Stein"
-                    },
-                    'Johnson': {
-                        '$sum': "$Johnson"
+                    'Clinton': {
+                        'votes': '$Clinton',
+                        'Gvoters': '$Clinton_GE'
                     }
                 }
             }
         ]
 
-        data = {
-            'Clinton': {
-                'votes': summary.data[0]['Clinton'],
-                'Gvoters': 0
-            },
-            'Trump': {
-                'votes': summary.data[0]['Trump'],
-                'Gvoters': 0
-            }
-        }
-
         queryset = Events.objects.aggregate(*pipeline)
-        serialized = MapSerializer(queryset, many=True)
+        serialized = SummarySerializer(queryset, many=True)
 
-        for result in serialized.data:
-            winner = ""
-            max_votes = 0
-            for candidate in result:
-                if candidate not in ['_id', 'Gvoters'] and result[candidate] > max_votes:
-                    max_votes = result[candidate]
-                    winner = candidate
-
-            if winner in ['Trump', 'Clinton']:
-                data[winner]['Gvoters'] += result['Gvoters']
+        data = {
+            'turnout': serialized.data[0]['turnout'],
+            'Clinton': serialized.data[0]['Clinton'],
+            'Trump': serialized.data[0]['Trump']
+        }
 
         return Response(data)
 
@@ -124,34 +136,102 @@ class Map(APIView):
                 }
             },
             {
-                '$group': {
-                    '_id': '$Abr',
-                    'Gvoters': {
-                        '$first': '$Gvoters'
+                '$project': {
+                    'Trump': {'$ifNull': ["$Trump", 0]},
+                    'Clinton': {'$ifNull': ["$Clinton", 0]},
+                    'Autre': {'$ifNull': ["$Autre", 0]},
+                    'Blanc': {'$ifNull': ["$Blanc", 0]},
+                    'Castle': {'$ifNull': ["$Castle", 0]},
+                    'McMullin': {'$ifNull': ["$McMullin", 0]},
+                    'Stein': {'$ifNull': ["$Stein", 0]},
+                    'Johnson': {'$ifNull': ["$Johnson", 0]},
+                    'Gvoters': 1,
+                    'Voters': 1,
+                    '_id': '$Abr'
+                }
+            },
+            {
+                '$project': {
+                    'Trump': 1,
+                    'Clinton': 1,
+                    'Autre': 1,
+                    'Blanc': 1,
+                    'Castle': 1,
+                    'McMullin': 1,
+                    'Stein': 1,
+                    'Johnson': 1,
+                    'Gvoters': 1,
+                    'Voters': 1,
+                    '_id': 1,
+                    'max_votes': {
+                        '$max': ["$Trump", "$Clinton", "$Autre", "$Blanc", "$Castle", "$McMullin", "$Stein", "$Johnson"]
+                    },
+                    'total_votes': {
+                        '$add': ["$Trump", "$Clinton", "$Autre", "$Blanc", "$Castle", "$McMullin", "$Stein", "$Johnson"]
+                    }
+                }
+            },
+            {
+                '$project': {
+                    'Trump': 1,
+                    'Clinton': 1,
+                    'Autre': 1,
+                    'Blanc': 1,
+                    'Castle': 1,
+                    'McMullin': 1,
+                    'Stein': 1,
+                    'Johnson': 1,
+                    'Gvoters': 1,
+                    '_id': 1,
+                    'fillKey': {
+                        '$switch': {
+                          'branches': [
+                             {'case': {'$eq': ['$max_votes', '$Trump']}, 'then': "Trump"},
+                             {'case': {'$eq': ['$max_votes', '$Clinton']}, 'then': "Clinton"},
+                             {'case': {'$eq': ['$max_votes', '$Autre']}, 'then': "Autre"},
+                             {'case': {'$eq': ['$max_votes', '$Blanc']}, 'then': "Blanc"},
+                             {'case': {'$eq': ['$max_votes', '$Castle']}, 'then': "Castle"},
+                             {'case': {'$eq': ['$max_votes', '$McMullin']}, 'then': "McMullin"},
+                             {'case': {'$eq': ['$max_votes', '$Stein']}, 'then': "Stein"},
+                             {'case': {'$eq': ['$max_votes', '$Johnson']}, 'then': "Johnson"},
+                          ]
+                        }
+                    },
+                    'ratio': {
+                        '$divide': ['$total_votes', '$Voters']
+                    }
+                }
+            },
+            {
+                '$project': {
+                    'fillKey': 1,
+                    'Gvoters': 1,
+                    'turnout': {
+                        '$multiply': ['$ratio', 100]
                     },
                     'Trump': {
-                        '$sum': "$Trump"
+                        'votes': '$Trump'
                     },
                     'Clinton': {
-                        '$sum': "$Clinton"
+                        'votes': '$Clinton'
                     },
                     'Autre': {
-                        '$sum': "$Autre"
+                        'votes': '$Autre'
                     },
                     'Blanc': {
-                        '$sum': "$Blanc"
+                        'votes': '$Blanc'
                     },
                     'Castle': {
-                        '$sum': "$Castle"
+                        'votes': '$Castle'
                     },
                     'McMullin': {
-                        '$sum': "$McMullin"
+                        'votes': '$McMullin'
                     },
                     'Stein': {
-                        '$sum': "$Stein"
+                        'votes': '$Stein'
                     },
                     'Johnson': {
-                        '$sum': "$Johnson"
+                        'votes': '$Johnson'
                     }
                 }
             }
@@ -162,48 +242,11 @@ class Map(APIView):
 
         data = {}
         for result in serialized.data:
-            winner = ""
-            max_votes = 0
-            for candidate in result:
-                if candidate not in ['_id', 'Gvoters'] and result[candidate] > max_votes:
-                    max_votes = result[candidate]
-                    winner = candidate
-
-            data[result['_id']] = {
-                'fillKey': winner,
-                'Gvoters': result['Gvoters'],
-                'Clinton': {
-                    'votes': result['Clinton']
-                },
-                'Trump': {
-                    'votes': result['Trump']
-                },
-                'Autre': {
-                    'votes': result['Autre']
-                },
-                'Blanc': {
-                    'votes': result['Blanc']
-                },
-                'Castle': {
-                    'votes': result['Castle']
-                },
-                'McMullin': {
-                    'votes': result['McMullin']
-                },
-                'Stein': {
-                    'votes': result['Stein']
-                },
-                'Johnson': {
-                    'votes': result['Johnson']
-                }
-            }
+            _id = result.pop('_id')
+            data[_id] = result
 
         return Response(data)
 
 
 class Timeline(APIView):
-    renderer_classes = (JSONRenderer, )
-
-
-class Turnout(APIView):
     renderer_classes = (JSONRenderer, )

@@ -11,12 +11,14 @@ function getAppState() {
   console.log("Summary received new state");
   console.log(states);
   for(var state in states) {
-    var votes = states[state].votes.toString();
-    var end = votes.length-1;
-    for (i = votes.length % 3; i > 0; i--) {
-      var vote = states[state].votes.toString();
-      states[state].votes = vote.slice(0, end-2) + " " + vote.slice(end-2);
-      end -= 3;
+    if(["Clinton", "Trump"].indexOf(state) >= 0) {
+      var votes = states[state].votes.toString();
+      var end = votes.length-1;
+      for (i = votes.length % 3; i > 0; i--) {
+        var vote = states[state].votes.toString();
+        states[state].votes = vote.slice(0, end-2) + " " + vote.slice(end-2);
+        end -= 3;
+      }
     }
   }
   return states;
