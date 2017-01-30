@@ -1,5 +1,4 @@
 # us-elections
-NoSQL project
 
 ## Base de données
 
@@ -31,15 +30,15 @@ rs0:PRIMARY> db.events.findOne()
 mongo --ssl --sslAllowInvalidCertificates loadBalancer-58809977.eu-west-2.elb.amazonaws.com/db
 ```
 
-## Application web
-L'application web expose des services pour accéder au données. Le serveur web Django est utilisé pour exécuter l'application.
+## API web rest
+L'API web expose des services pour accéder au données. Le serveur web Django est utilisé pour exécuter l'application.
 
-L'application web est déployé en continue sur une instance EC2 Amazon et accessible à cette adresse: http://52.90.157.37/
+L'API web est déployé en continue sur une instance EC2 Amazon et accessible à cette adresse: http://52.90.157.37/
 
 Les trois services exposés sont:
-- http://52.90.157.37/summary?start_time=2016-11-08T20:00:00.000Z
-- http://52.90.157.37/map?start_time=2016-11-08T20:00:00.000Z
-- http://52.90.157.37/timeline?start_time=2016-11-08T20:00:00.000Z
+- http://52.90.157.37/summary/?start_time=2016-11-08T20:00:00.000Z
+- http://52.90.157.37/map/?start_time=2016-11-08T20:00:00.000Z
+- http://52.90.157.37/predicton/?start_time=2016-11-08T20:00:00.000Z
 
 ### Install
 
@@ -64,7 +63,7 @@ export PYTHONPATH=$PYTHONPATH:"/opt/anaconda3/lib/python3.5/site-packages"
 ```
 
 ## Dashboard
-Le dashboard est une application écrite avec les frameworks Reactjs et D3js.
+Le dashboard est une application web écrite avec les frameworks Reactjs et D3js.
 
 L'architecture Flux a été mise en place pour garantir la stabilité de l'application.
 ![](https://cask.scotch.io/2014/10/V70cSEC.png)
