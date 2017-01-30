@@ -2,13 +2,15 @@ var React = require('react');
 
 var MapInfo = require('../components/MapInfo');
 
-var MapInfoStore = require('../stores/MapInfoStore');
+var TimelineStore = require('../stores/TimelineStore');
 var SummaryStore = require('../stores/SummaryStore');
+var PredictionStore = require('../stores/PredictionStore');
+
 var DjangoAPI = require('../api/DjangoApi');
 var api = new DjangoAPI();
 
 function getAppState() {
-  var infos = MapInfoStore.getMapInfo();
+  var infos = TimelineStore.getTimeline();
   console.log("MapInfo received new state");
   console.log(infos);
   return infos;
@@ -23,11 +25,20 @@ function getSummaryState() {
   };
 }
 
+function getPredictionState() {
+  var states = PredictionStore.getPrediction();
+  console.log("MapInfo received new state");
+  console.log(states);
+  return {
+    prediction: states
+  };
+}
+
 function getApiState() {
   return api;
 }
 
-var MapInfoContainer = React.createClass({
+var TimelineContainer = React.createClass({
   getApi: function() {
     return getApiState();
   },
@@ -35,37 +46,48 @@ var MapInfoContainer = React.createClass({
     return getAppState();
   },
   startPolling: function() {
+
     var self = this;
     setTimeout(function() {
+
       if (!self.isMounted()) { return; } // abandon
-      self.getApi().getMapInfo();
+      self.getApi().getTimeline();
+      self.getApi().getPrediction();
+
       self._timer = setInterval(function() {
+        
         console.log("Refreshing map info");
-        self.getApi().getMapInfo();
+        self.getApi().getTimeline();
+        self.getApi().getPrediction();
       }, 30000);
     }, 1000);
   },
   componentWillMount: function() {
-    MapInfoStore.addChangeListenerMapInfo(this._onChangeMapInfo);
+    TimelineStore.addChangeListenerTimeline(this._onChangeTimeline);
     SummaryStore.addChangeListenerSummary(this._onChangeSummary);
+    PredictionStore.addChangeListenerPrediction(this._onChangePrediction);
   },
   componentDidMount: function() {
     this.startPolling();
   },
   componentsWillUnmount: function() {
-    MapInfoStore.removeChangeListenerMapInfo(this._onChangeMapInfo);
+    TimelineStore.removeChangeListenerTimeline(this._onChangeTimeline);
     SummaryStore.removeChangeListenerSummary(this._onChangeSummary);
+    PredictionStore.removeChangeListenerPrediction(this._onChangePrediction);
 
     if (this._timer) {
       clearInterval(this._timer);
       this._timer = null;
     }
   },
-  _onChangeMapInfo: function() {
+  _onChangeTimeline: function() {
     this.setState(getAppState());
   },
   _onChangeSummary: function() {
     this.setState(getSummaryState());
+  },
+  _onChangePrediction: function() {
+    this.setState(getPredictionState());
   },
   render: function() {
     return (
@@ -74,4 +96,4 @@ var MapInfoContainer = React.createClass({
   }
 });
 
-module.exports = MapInfoContainer;
+module.exports = TimelineContainer;

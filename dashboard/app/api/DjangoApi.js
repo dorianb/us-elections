@@ -1,6 +1,8 @@
 var SummaryActions = require('../actions/SummaryActions');
-var MapInfoActions = require('../actions/MapInfoActions');
 var MapViewActions = require('../actions/MapViewActions');
+var PredictionActions = require('../actions/PredictionActions');
+var TimelineActions = require('../actions/TimelineActions');
+
 var axios = require('axios');
 
 var URL = "http://52.90.157.37";
@@ -26,20 +28,6 @@ var ElectionsAPI = function() {
       });
     };
 
-    this.getMapInfo = function() {
-      //var url = URL + '/timeline';
-      var url = '../app/data/timeLine.json';
-      console.log("Request: " + url + " at " + time);
-      axios.get(url, {
-        params: {
-          start_time: time
-        }
-      }).then(function(data) {
-        console.log(data);
-        MapInfoActions.loadMapInfo(data);
-      });
-    };
-
     this.getMapView = function() {
       var url = URL + '/map/';
       console.log("Request: " + url + " at " + time);
@@ -51,6 +39,34 @@ var ElectionsAPI = function() {
       }).then(function(data) {
         console.log(data);
         MapViewActions.loadMapView(data);
+      });
+    };
+
+    this.getPrediction = function() {
+      var url = URL + '/prediction/';
+      console.log("Request: " + url + " at " + time);
+
+      axios.get(url, {
+        params: {
+          start_time: time
+        }
+      }).then(function(data) {
+        console.log(data);
+        PredictionActions.loadPrediction(data);
+      });
+    };
+
+    this.getTimeline = function() {
+      //var url = URL + '/timeline';
+      var url = '../app/data/timeLine.json';
+      console.log("Request: " + url + " at " + time);
+      axios.get(url, {
+        params: {
+          start_time: time
+        }
+      }).then(function(data) {
+        console.log(data);
+        TimelineActions.loadTimeline(data);
       });
     };
 };

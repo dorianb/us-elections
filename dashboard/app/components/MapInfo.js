@@ -1,16 +1,9 @@
 var React = require('react');
-var PieChart = require('./PieChart');
+var Turnout = require('./Turnout');
+var Prediction = require('./Prediction');
 
 
 var MapInfo = React.createClass({
-  propTypes:  {
-    turnout: React.PropTypes.number
-  },
-  getDefaultProps: function() {
-    return {
-      turnout: 0
-    };
-  },
   getInitialState: function() {
     return {};
   },
@@ -87,8 +80,13 @@ var MapInfo = React.createClass({
             </div>
           </div>
           <br/>
+          <p className="text-center">Prédiction</p>
+          <Prediction width={this.state.width} height={this.state.height}
+           prediction={this.props.prediction} />
+
           <p className="text-center">Abstention</p>
-          <PieChart {...this.state} {...this.props} />
+          <Turnout width={this.state.width} height={this.state.height}
+           turnout={this.props.turnout} />
 
           {/*<ol>
             {infos}

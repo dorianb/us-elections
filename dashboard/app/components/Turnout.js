@@ -2,7 +2,7 @@ var React = require('react');
 var d3 = require('d3');
 
 
-var PieChart = React.createClass({
+var Turnout = React.createClass({
   propTypes:  {
     width: React.PropTypes.number,
     height: React.PropTypes.number,
@@ -16,7 +16,7 @@ var PieChart = React.createClass({
     };
   },
   componentDidUpdate: function() {
-    var vis = d3.select("#svg_donut");
+    var vis = d3.select("#svg_turnout");
     vis.selectAll("*").remove();
 
     var height = this.props.height*2;
@@ -31,7 +31,7 @@ var PieChart = React.createClass({
 
     data = [[0, this.props.turnout, "#9DF696", "2rem"]]
 
-    var vis = d3.select("#svg_donut");
+    var vis = d3.select("#svg_turnout");
 
     var arc = d3.arc()
       .innerRadius(radius/5)
@@ -58,10 +58,10 @@ var PieChart = React.createClass({
   },
   render: function () {
     return (
-      <svg id="svg_donut" width={this.props.width} height={this.props.height*2}>
+      <svg id="svg_turnout" width={this.props.width} height={this.props.width}>
       </svg>
     );
   }
 });
 
-module.exports = PieChart;
+module.exports = Turnout;
