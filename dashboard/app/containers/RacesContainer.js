@@ -15,6 +15,7 @@ function getAppState() {
       var datum = {
         state: state,
         percent: dataset[state].Gvoters / 538 * 100,
+        gvoters: dataset[state].Gvoters,
         winner: winner
       };
       data.push(datum);
@@ -22,15 +23,15 @@ function getAppState() {
   }
 
   if(!_.isEmpty(data)) {
-    var percent_known = data.reduce(function(a, b) {
-      return {percent: a.percent + b.percent};
-    }).percent;
+    var gvoters_known = data.reduce(function(a, b) {
+      return {gvoters: a.gvoters + b.gvoters};
+    }).gvoters;
 
-    var percent_unknown = 100 - percent_known;
-    
+    var gvoters_unknown = 538 - gvoters_known;
+
     var datum = {
       state: "unknown",
-      percent: percent_unknown,
+      percent: gvoters_unknown / 538 * 100,
       winner: "Not determined"
     };
     data.push(datum);

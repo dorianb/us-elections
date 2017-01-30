@@ -87,7 +87,7 @@ var MapInfo = React.createClass({
             </div>
           </div>
           <br/>
-          <p className="text-center">Participation</p>
+          <p className="text-center">Abstention</p>
           <PieChart {...this.state} {...this.props} />
 
           {/*<ol>

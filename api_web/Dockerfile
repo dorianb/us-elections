@@ -6,7 +6,7 @@ RUN yum install -y python35
 RUN curl https://bootstrap.pypa.io/get-pip.py | python -
 
 # Install app
-RUN pip install Django mongoengine djangorestframework django-cors-headers
+RUN pip install Django mongoengine djangorestframework django-cors-headers pandas
 RUN mkdir /var/web_app
 ADD . /var/web_app/
 

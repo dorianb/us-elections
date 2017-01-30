@@ -5,6 +5,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from datetime import datetime
 
+import pandas as pd
+import os
+
 
 class Summary(APIView):
     renderer_classes = (JSONRenderer, )
@@ -246,6 +249,23 @@ class Map(APIView):
             data[_id] = result
 
         return Response(data)
+
+
+class Prediction(APIView):
+    renderer_classes = (JSONRenderer, )
+
+    def get(self, request, format=None):
+
+        path = os.path.dirname(os.path.realpath(__file__))
+
+        df_state_to_initial_letters = pd.read_csv(path + 'percent-elections-dem.csv', skiprows=4, header=0, encoding='latin1')
+        df_state_to_initial_letters['Dpercentagesince1856'] = df_state_to_initial_letters['Dpercentagesince1856'].str.replace('%', '')
+        df_states_Dpercentagesince1856 = pd.DataFrame(df_state_to_initial_letters[['states', 'Dpercentagesince1856']])
+
+        df_states_Dpercentagesince1856.to_json(path_or_buf='df_states_Dpercentagesince1856')
+        print('df_state_to_initial_letters')
+
+        return Response()
 
 
 class Timeline(APIView):
