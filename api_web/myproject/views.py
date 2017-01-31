@@ -71,12 +71,12 @@ class Prediction(APIView):
 
         # Get predictions
         path = os.path.dirname(os.path.realpath(__file__))
-        df = pd.read_csv(path + '/percent-elections-dem.csv',
+        df = pd.read_csv(path + '/percent-elections-dem-5.csv',
                          skiprows=4, header=0, encoding='latin1')
-        df['Dpercentagesince1856'] = df['Dpercentagesince1856'].str.replace(
-            '%', '')
-        df = df[['states', 'Dpercentagesince1856']].set_index('states')
-        df = df['Dpercentagesince1856'].astype(np.float32)
+        
+        df['percentage'] = df['Average-5-years']
+        df = df[['states', 'percentage']].set_index('states')
+        df = df['percentage'].astype(np.float32)
         data = df.to_dict()
 
         # Mixe predictions, results and gvoter
