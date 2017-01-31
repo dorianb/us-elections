@@ -21,7 +21,7 @@ class Summary(APIView):
         format_str = '%Y-%m-%dT%H:%M:%S.%fZ'
         to = datetime.strptime(to, format_str)
 
-        queryset = Events.objects.aggregate(*Pipeline.getResults(to))
+        queryset = Events.objects.aggregate(*Pipeline().getResults(to))
         serialized = SummarySerializer(queryset, many=True)
 
         data = {
@@ -41,7 +41,7 @@ class Map(APIView):
         format_str = '%Y-%m-%dT%H:%M:%S.%fZ'
         to = datetime.strptime(to, format_str)
 
-        queryset = Events.objects.aggregate(*Pipeline.getResultsByState(to))
+        queryset = Events.objects.aggregate(*Pipeline().getResultsByState(to))
         serialized = MapSerializer(queryset, many=True)
 
         data = {}
@@ -62,11 +62,11 @@ class Prediction(APIView):
         format_str = '%Y-%m-%dT%H:%M:%S.%fZ'
         to = datetime.strptime(to, format_str)
 
-        queryset = Events.objects.aggregate(*Pipeline.getResultsByState(to))
+        queryset = Events.objects.aggregate(*Pipeline().getResultsByState(to))
         results = MapSerializer(queryset, many=True).data
 
         # Get Gvoters by state
-        queryset = Events.objects.aggregate(*Pipeline.getGvotersByState())
+        queryset = Events.objects.aggregate(*Pipeline().getGvotersByState())
         gvoters = GvotersSerializer(queryset, many=True).data
 
         # Get predictions

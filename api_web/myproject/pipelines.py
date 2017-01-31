@@ -1,8 +1,8 @@
 
 
-class Pipeline():
+class Pipeline:
 
-    def getGvotersByState():
+    def getGvotersByState(self):
         return [
             {
                 '$project': {
@@ -12,7 +12,7 @@ class Pipeline():
             }
         ]
 
-    def getResults(to):
+    def getResults(self, to):
         return [
             {
                 '$match': {
@@ -110,7 +110,7 @@ class Pipeline():
             }
         ]
 
-    def getResultsByState(to):
+    def getResultsByState(self, to):
         return [
             {
                 '$match': {

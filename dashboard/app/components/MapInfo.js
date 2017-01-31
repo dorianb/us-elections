@@ -74,6 +74,7 @@ var MapInfo = React.createClass({
         <div id="changelog">
           <div className="heading">
             <h3>Statistiques</h3>
+            <br />
             <div id="refresh">
               <button className="refresh"></button>
               <span className="countdown">Refreshing in {this.state.timing} seconds</span>

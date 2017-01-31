@@ -29,19 +29,21 @@ var Prediction = React.createClass({
 
     var data = [];
     var dataset = this.props.prediction;
-    var start_clinton = 0
+    var start_clinton = 538
     var start_trump = 0
 
     for(var state in dataset) {
       var winner = dataset[state].fillKey;
       var start = winner == 'Clinton' ? start_clinton : start_trump;
-      var end = start + dataset[state].Gvoters;
+      var end = start + (winner == 'Clinton' ? -dataset[state].Gvoters : dataset[state].Gvoters);
       var color = winner == 'Clinton' ? '#4c7de0':'#e52426';
       var datum = [start, end, color];
       data.push(datum);
       start_clinton = winner == 'Clinton' ? end : start_clinton;
       start_trump = winner == 'Trump' ? end : start_trump;
     }
+
+    var winner = start_trump >= 270 ? 'Trump':'Clinton';
 
     var vis = d3.select("#svg_prediction");
 
@@ -51,14 +53,15 @@ var Prediction = React.createClass({
       .startAngle(function(d){return cScale(d[0]);})
       .endAngle(function(d){return cScale(d[1]);});
 
-    /*vis.selectAll("text")
-      .data(data)
+    vis.selectAll("text")
+      .data([0])
       .enter()
       .append("text")
-      .attr("x", function(d) { return radius/2-radius/12; })
+      .attr("x", function(d) { return radius/2-radius/9; })
       .attr("y", function(d) { return radius/2+radius/40; })
-      .attr("font-size", function(d) { return d[3]; })
-      .text(function (d) { return d[1] + "%"; });*/
+      .attr("font-size", function(d) { return "2rem"; })
+      .attr("fill", function(d) { return winner == 'Clinton' ? '#4c7de0':'#e52426'} )
+      .text(function (d) { return winner});
 
     vis.selectAll("path")
       .data(data)
