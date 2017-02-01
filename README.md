@@ -1,8 +1,44 @@
 # us-elections
-NoSQL project
 
-## Application web
-L'application web expose des services pour accéder au données. Le serveur web Django est utilisé pour exécuter l'application.
+## Base de données
+
+La base de données contient les résultats des élections de 2016 par état.
+
+Exemple de requête:
+```
+rs0:PRIMARY> db.events.findOne()
+{
+    "_id" : ObjectId("588b22fc5617cf6a8756cf0e"),
+    "Time" : ISODate("2016-11-08T20:00:00Z"),
+    "State" : "Minnesota",
+    "Abr" : "MN",
+    "Voters" : 3972330,
+    "Gvoters" : 10,
+    "Autre" : 41657,
+    "Castle" : 9456,
+    "Clinton" : 1367716,
+    "Johnson" : 112972,
+    "McMullin" : 53076,
+    "Stein" : 36985,
+    "Trump" : 1322951
+}
+```
+
+### Connexion à l'instance
+
+```
+mongo --ssl --sslAllowInvalidCertificates loadBalancer-58809977.eu-west-2.elb.amazonaws.com/db
+```
+
+## API web rest
+L'API web expose des services pour accéder au données. Le serveur web Django est utilisé pour exécuter l'application.
+
+L'API web est déployé en continue sur une instance EC2 Amazon et accessible à cette adresse: http://52.90.157.37/
+
+Les trois services exposés sont:
+- http://52.90.157.37/summary/?start_time=2016-11-08T20:00:00.000Z
+- http://52.90.157.37/map/?start_time=2016-11-08T20:00:00.000Z
+- http://52.90.157.37/predicton/?start_time=2016-11-08T20:00:00.000Z
 
 ### Install
 
@@ -23,11 +59,11 @@ python manage.py runserver
 
 Si nécessaire, ajouter le dossier où les bibliothèques sont installées:
 ```
-export PYTHONPATH=$PYTHONPATH:/opt/anaconda3/lib/python3.5/site-packages"
+export PYTHONPATH=$PYTHONPATH:"/opt/anaconda3/lib/python3.5/site-packages"
 ```
 
 ## Dashboard
-Le dashboard est une application écrite avec les frameworks Reactjs et D3js.
+Le dashboard est une application web écrite avec les frameworks Reactjs et D3js.
 
 L'architecture Flux a été mise en place pour garantir la stabilité de l'application.
 ![](https://cask.scotch.io/2014/10/V70cSEC.png)

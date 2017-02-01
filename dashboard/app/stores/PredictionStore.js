@@ -4,33 +4,33 @@ var EventEmitter = require('events').EventEmitter;
 var merge = require('merge');
 
 // Internal object of
-var _mapInfo = {};
+var _Prediction = {};
 
 // Method to load items from action data
-function loadMapInfo(data) {
-  console.log("MapInfo store");
-  if(data) _mapInfo = data.data;
-  console.log(_mapInfo);
+function loadPrediction(data) {
+  console.log("Prediction store");
+  if(data) _Prediction = data.data;
+  console.log(_Prediction);
 }
 
 // Merge our store with Node's Event Emitter
-var MapInfoStore = merge(EventEmitter.prototype, {
+var PredictionStore = merge(EventEmitter.prototype, {
 
   // Returns all shoes
-  getMapInfo: function() {
-    return _mapInfo;
+  getPrediction: function() {
+    return _Prediction;
   },
 
-  emitChangeMapInfo: function() {
-    this.emit('MapInfoChange');
+  emitChangePrediction: function() {
+    this.emit('PredictionChange');
   },
 
-  addChangeListenerMapInfo: function(callback) {
-    this.on('MapInfoChange', callback);
+  addChangeListenerPrediction: function(callback) {
+    this.on('PredictionChange', callback);
   },
 
-  removeChangeListenerMapInfo: function(callback) {
-    this.removeListener('MapInfoChange', callback);
+  removeChangeListenerPrediction: function(callback) {
+    this.removeListener('PredictionChange', callback);
   }
 
 });
@@ -42,12 +42,12 @@ AppDispatcher.register(function(payload) {
 
   // Define what to do for certain actions
   switch(action.actionType) {
-    case constants.LOAD_MAP_INFO:
+    case constants.LOAD_PREDICTION:
       // Call internal method based upon dispatched action
       console.log("Look's like you want to load map info");
-      loadMapInfo(action.data);
+      loadPrediction(action.data);
       // If action was acted upon, emit change event
-      MapInfoStore.emitChangeMapInfo();
+      PredictionStore.emitChangePrediction();
       break;
 
     default:
@@ -58,4 +58,4 @@ AppDispatcher.register(function(payload) {
 
 });
 
-module.exports = MapInfoStore;
+module.exports = PredictionStore;

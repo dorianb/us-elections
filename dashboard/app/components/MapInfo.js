@@ -1,12 +1,26 @@
 var React = require('react');
+var Turnout = require('./Turnout');
+var Prediction = require('./Prediction');
 
 
 var MapInfo = React.createClass({
-  getDefaultProps: function() {
-    return {};
-  },
   getInitialState: function() {
     return {};
+  },
+  resize: function() {
+    console.log("Resizing");
+    var width = this.refs.MapInfo.offsetWidth;
+    var height = this.refs.MapInfo.offsetHeight;
+
+    this.setState({
+      width: width,
+      height: height
+    });
+  },
+  componentDidMount: function() {
+    window.addEventListener("resize", this.resize);
+
+    this.resize();
   },
   componentWillReceiveProps: function() {
     if (this._timer) {
@@ -20,6 +34,8 @@ var MapInfo = React.createClass({
     }, 1000);
   },
   componentsWillUnmount: function() {
+    window.removeEventListener("resize", this.resize);
+
     if (this._timer) {
       clearInterval(this._timer);
       this._timer = null;
@@ -54,18 +70,28 @@ var MapInfo = React.createClass({
       );
     }
     return (
-      <div className="map-info">
+      <div className="map-info" ref="MapInfo">
         <div id="changelog">
           <div className="heading">
-            <h3>Just In</h3>
+            <h3>Statistiques</h3>
+            <br />
             <div id="refresh">
               <button className="refresh"></button>
               <span className="countdown">Refreshing in {this.state.timing} seconds</span>
             </div>
           </div>
-          <ol>
+          <br/>
+          <p className="text-center">Prédiction</p>
+          <Prediction width={this.state.width} height={this.state.height}
+           prediction={this.props.prediction} />
+
+          <p className="text-center">Abstention</p>
+          <Turnout width={this.state.width} height={this.state.height}
+           turnout={this.props.turnout} />
+
+          {/*<ol>
             {infos}
-          </ol>
+          </ol>*/}
         </div>
       </div>
     );

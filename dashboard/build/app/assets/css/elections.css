@@ -145,7 +145,7 @@ nav > *, main > * { width: 100%; max-width: 1201px; margin-left: auto; margin-ri
 
 @media (max-width: 1200px) { nav > *, main > * { width: auto; margin-left: 16px; margin-right: 16px; } }
 
-header { background: #fff; font-family: Source Sans Pro, "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; padding: .5rem; margin-bottom: 2rem; height: 4rem; display: -webkit-flex; display: -ms-flexbox; display: flex; }
+header { background: #fff; font-family: Source Sans Pro, "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; padding: .5rem; margin-bottom: 2rem; height: 10rem; }
 
 header > * { -webkit-flex: 0 0 auto; -ms-flex: 0 0 auto; flex: 0 0 auto; }
 

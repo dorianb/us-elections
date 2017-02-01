@@ -2,77 +2,48 @@ var React = require('react');
 var d3 = require('d3');
 var Datamap = require('./Datamap');
 var MapLegend = require('./MapLegend');
+var _ = require('underscore');
 
-var electoralVotes = require('../data/electoralVotes');
 
 var MapView = React.createClass({
     options: {},
     componentWillUpdate: function(nextProps, nextStates) {
-      var dataset = {};
-
-      console.log("Map View gets results");
-      console.log(nextProps);
-      for(var state in nextProps) {
-        dataset[state] = nextProps[state];
-        dataset[state].electoralVotes = electoralVotes[state];
-      }
-
-      /*var states = [];
-      var onlyValues = [];
-      for(var state in data) {
-        states.push(state);
-        onlyValues.push(data[state].electoralVotes);
-      }
-
-      var minValue = Math.min.apply(null, onlyValues),
-         maxValue = Math.max.apply(null, onlyValues);
-
-      var paletteScale = d3.scaleLinear().domain([minValue, maxValue]).range(["#ffe0cc", "#ff471a"]);
-
-      data.forEach(function(item) {
-         var iso = 'usa',
-             value = data[item].electoralVotes,
-             region = item;
-         dataset[iso] = {
-             numberOfThings: value,
-             fillColor: paletteScale(value),
-             region: region
-         };
-      });*/
 
       this.options = {
           reference: 'Map',
           scope: 'usa',
           labels: true,
-          data: dataset,
+          data: nextProps,
           fills: {
-            'Republican': '#e52426',
-            'Democrat': '#4c7de0',
-            'Heavy Democrat': '#667FAF',
-            'Light Democrat': '#A9C0DE',
-            'Heavy Republican': '#CA5E5B',
-            'Light Republican': '#EAA9A8',
-            defaultFill: '#EDDC4E'
+            'Trump': '#e52426',
+            'Clinton': '#4c7de0',
+            defaultFill: '#D3D3D3'
           },
           geographyConfig: {
             highlightOnHover: true,
-            highlightFillOpacity: 1,
+            highlightFillOpacity: 0,
+            highlightFillColor: 'transparent',
             highlightBorderColor: '#000000',
             highlightBorderWidth: 3,
             popupTemplate: function(geography, data) {
               var results = '';
-              for(var candidate in data.candidates) {
-                results += '<tr>'
-                  + '<td>'+ candidate + '</td>'
-                  + '<td>' + data.candidates[candidate].votes + '</td>'
-                  + '</tr>';
+              var candidates = _.sortBy(Object.keys(data), function(o) { return data[o].votes; });
+              for(var i in candidates.reverse()) {
+                var candidate = candidates[i];
+                if(["fillKey", "Gvoters", "turnout"].indexOf(candidate) < 0) {
+                  results += '<tr>'
+                    + '<td>'+ candidate + '</td>'
+                    + '<td>' + data[candidate].votes + '</td>'
+                    + '</tr>';
+                }
               }
               return '<div class="hoverinfo">'
                 + '<strong>' + geography.properties.name + '</strong>'
-                + '<p>Le gagnant obtient <b>' + data.electoralVotes + '</b> grands électeurs</p>'
+                + '<p>Le gagnant obtient <b>' + data.Gvoters + '</b> grands électeurs</p>'
+                + '<p>L\'abstention est de <b>' + Math.round(data.turnout*10)/10 + '%</b></p>'
                 + '<table>'
                 + '<tr>'
-                + '<th>Candidat</th>'
+                + '<th></th>'
                 + '<th>Votes</th>'
                 + '</tr>'
                 + results

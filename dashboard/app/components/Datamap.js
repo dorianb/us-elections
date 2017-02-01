@@ -41,12 +41,9 @@ var Datamap = React.createClass({
 
     shouldComponentUpdate: function (nextProps, nextState) {
 
-      console.log("Should component update ?");
       if(Object.keys(nextProps.data).length > 0) {
-        console.log("YES");
         return true;
       }
-      console.log("NO");
       return false;
     },
 
@@ -67,10 +64,7 @@ var Datamap = React.createClass({
       console.log("Datamap is clearing");
 
       var container = this.refs.Map;
-      console.log("Refs");
-      console.log(this.refs);
       for (var child of Array.from(container.childNodes)) {
-        console.log("Removing child");
         container.removeChild(child);
       }
       console.log("Cleared");
